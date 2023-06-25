@@ -29,6 +29,7 @@ int main()
 			cout<<s[i][x-2]<<s[i][x-1];
 		}
 	}
+	//hi
 	// stack<string> s;
 	// for (int i = 0; i < t; ++i)
 	// {
