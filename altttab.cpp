@@ -13,10 +13,14 @@ int main()
 		cin>>s[i];
 		for (int j = i-1; j >=0; --j)
 		{
-			if (s[i]==s[j])
+			if (s[i].size()==s[j].size())
 			{
-				s[j].erase();
-				break;
+				if (s[i]==s[j])
+				{
+					s[j].erase();
+				     break;
+				}
+				
 			}
 		}
 	}
