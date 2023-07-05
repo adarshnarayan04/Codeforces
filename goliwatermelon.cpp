@@ -19,6 +19,8 @@ int main()
 	cin>>t;
 	while(t--)
 	{
+		
+		
 		int a,n;
 		cin>>a>>n;
 		int arr[n];
