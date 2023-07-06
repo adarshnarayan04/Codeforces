@@ -88,43 +88,38 @@ ll n,sum=0,ss=0,c=0;
 cin>>n;
 string s;
 cin>>s;
-// for (int i = 0; i < n; ++i)
-// {
-// 	if (s[i]==')')
-// 	{
-// 		sum++;
-// 	}
-// }
-// if (sum==0)
-// {
-// 	cout<<0<<nline;
-// 	return;
-// }
 for (int i = 0; i < n; )
 {c=0;
-  debug(i);
+
 	if (s[i]==':')
 	{
 		for (int j = i+1; j < n; ++j)
-		{	debug(j);
+		{
+			if (s[j]=='(')
+			{
+				break;
+			}
 
 			
 			if (s[j]==')')
 			{
 				c=1;
+				continue;
 			}
+		
 			if (c==1&&s[j]==':')
 			{
 				ss++;
-				i=j;
+				i=j-1;
 				break;
 			}
 			if (c==0&&s[j]==':')
 			{
-				// ss++;
-				i=j;
+			
+				i=j-1;
 				break;
 			}
+			
 			
 		}
 		
