@@ -70,8 +70,7 @@ template <class T, class V> void _print(pair <T, V> p) {cerr << "{"; _print(p.fi
 template <class T> void _print(vector <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <class T> void _print(set <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <class T> void _print(multiset <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
-template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
-/*template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {cerr<<"{";_print(i.fi); cerr << " ";_print(i.se);cerr<<"}";cerr<<" ";} cerr << "]";}*/
+template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {cerr<<"{";_print(i.fi); cerr << " ";_print(i.se);cerr<<"}";cerr<<" ";} cerr << "]";}
 
 
 int gcd(int a, int b) { return b == 0 ? a : gcd(b, a % b); }
@@ -84,35 +83,45 @@ const int INF=1e9 +10;
 // const ll INF 0x3f3f3f3f3f3f3f3fLL;
 double acc = 1e-6;
 
-bool compare(pair<int,int> a,pair<int,int> b)
+
+void themagician(){
+ll n,k,x=0;
+cin>>n>>k;
+vector<int> sum;
+vector<int> a(n+1);
+for (int i = 1; i < n+1; ++i)
 {
-	if (a.first!=b.first)
-	{
-		return a.first>b.first;
+	cin>>a[i];
+	if (i>=2)
+	{int s;
+		s=abs(a[i]-a[i-1]);
+		sum.pb(s);
+		
 	}
-	return a.second<b.second;
+	
 }
+sort(all(sum),greater<int>());
+sum.erase(sum.begin(),sum.begin()+k-1);
+x=accumulate(all(sum),0);
+cout<<x<<nline;
+
+
+debug(sum);
+
+
+}
+
+
+
 int main() {
 #ifndef ONLINE_JUDGE
 	freopen("Error.txt", "w", stderr);
 #endif
   optimize();
-  map<int, int>m;
-  vector<pair<ll, ll>> a(5);
-  for (int i = 0; i < 5; ++i)
-  {
-  	cin>>a[i].fi>>a[i].se;
+  
+  w(t){
+    themagician();
   }
-  sort(all(a),compare);
-  for (int i = 0; i < 5; ++i)
-  {
-  	cout<<a[i].fi<<" "<<a[i].se<<nline;
-  }
-  cout<<"|";
-  
-  debug(m);
-  
-  
   
 return 0;
 }

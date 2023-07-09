@@ -70,8 +70,7 @@ template <class T, class V> void _print(pair <T, V> p) {cerr << "{"; _print(p.fi
 template <class T> void _print(vector <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <class T> void _print(set <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <class T> void _print(multiset <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
-template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
-/*template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {cerr<<"{";_print(i.fi); cerr << " ";_print(i.se);cerr<<"}";cerr<<" ";} cerr << "]";}*/
+template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {cerr<<"{";_print(i.fi); cerr << " ";_print(i.se);cerr<<"}";cerr<<" ";} cerr << "]";}
 
 
 int gcd(int a, int b) { return b == 0 ? a : gcd(b, a % b); }
@@ -83,7 +82,6 @@ const int N=1e5 +10;
 const int INF=1e9 +10;
 // const ll INF 0x3f3f3f3f3f3f3f3fLL;
 double acc = 1e-6;
-
 bool compare(pair<int,int> a,pair<int,int> b)
 {
 	if (a.first!=b.first)
@@ -92,27 +90,86 @@ bool compare(pair<int,int> a,pair<int,int> b)
 	}
 	return a.second<b.second;
 }
+
+
+
 int main() {
 #ifndef ONLINE_JUDGE
 	freopen("Error.txt", "w", stderr);
 #endif
   optimize();
-  map<int, int>m;
-  vector<pair<ll, ll>> a(5);
-  for (int i = 0; i < 5; ++i)
-  {
-  	cin>>a[i].fi>>a[i].se;
+  
+  w(t){
+    ll n,m,h,rank=0;
+cin>>n>>m>>h;
+vector<int> a[n];
+vector<ll> p(n),s(n,0),sum(n,0);
+//p(n) is total time of submission of answer s(n) is pleantly time
+vector<pair<int,int>>score(n);
+for (int i = 0; i < n; ++i)
+{
+	for (int j = 0; j < m; ++j)
+	{
+		int x;
+		cin>>x;
+		a[i].pb(x);
+	}
+	
+}
+for (int i = 0; i < n; ++i)
+{
+	sort(a[i].begin(),a[i].end());
+	debug(a[i]);
+	debug(h);
+	for (int j = 0; j < m; ++j)
+	{
+		if ((p[i]+a[i][j])>h)
+		{
+			break;
+		}
+		if (j==0&&a[i][j]<=h)
+		{
+			p[i]=a[i][j];
+			sum[i]=p[i];
+			s[i]++;
+			// YES;
+		}
+		else if ((p[i]+a[i][j])>h)
+		{
+			break;
+		}
+		else if (j>0&&(p[i]+a[i][j])<=h)//p[i]+a[i][j]) it is total time if this question is solved if greater than no need to include
+		{
+			p[i]+=a[i][j];
+			sum[i]+=p[i];
+			s[i]++;
+		}
+		
+		
+	}
+	score[i]={s[i],sum[i]};
+	
+}
+int x=score[0].first;
+int y=score[0].second;
+debug(x);
+debug(y);
+sort(score.begin(),score.end(),compare);
+debug(score);
+for (int i = 0; i < n; ++i)
+{
+	if (score[i].first==x)
+	{
+		if (score[i].second==y)
+		{
+			debug(i);
+			rank=i+1;
+			break;
+		}
+	}
+}
+cout<<rank<<nline;
   }
-  sort(all(a),compare);
-  for (int i = 0; i < 5; ++i)
-  {
-  	cout<<a[i].fi<<" "<<a[i].se<<nline;
-  }
-  cout<<"|";
-  
-  debug(m);
-  
-  
   
 return 0;
 }

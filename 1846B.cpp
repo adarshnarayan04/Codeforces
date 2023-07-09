@@ -70,8 +70,7 @@ template <class T, class V> void _print(pair <T, V> p) {cerr << "{"; _print(p.fi
 template <class T> void _print(vector <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <class T> void _print(set <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <class T> void _print(multiset <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
-template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
-/*template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {cerr<<"{";_print(i.fi); cerr << " ";_print(i.se);cerr<<"}";cerr<<" ";} cerr << "]";}*/
+template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {cerr<<"{";_print(i.fi); cerr << " ";_print(i.se);cerr<<"}";cerr<<" ";} cerr << "]";}
 
 
 int gcd(int a, int b) { return b == 0 ? a : gcd(b, a % b); }
@@ -83,36 +82,79 @@ const int N=1e5 +10;
 const int INF=1e9 +10;
 // const ll INF 0x3f3f3f3f3f3f3f3fLL;
 double acc = 1e-6;
-
-bool compare(pair<int,int> a,pair<int,int> b)
+int check(char s)
 {
-	if (a.first!=b.first)
+	int x=0;
+	if (s=='X')
 	{
-		return a.first>b.first;
+		cout<<"X"<<nline;
+		x++;
+		
 	}
-	return a.second<b.second;
+	else if (s=='O')
+	{
+		cout<<"O"<<nline;
+	    x++;
+	}
+	else if (s=='+')
+	{
+		cout<<"+"<<nline;
+		x++;
+	}
+	return x;
+
 }
+
+void themagician(){
+string s[3];
+int c=0;
+for (int i = 0; i < 3; ++i)
+{
+	cin>>s[i];
+}
+for (int i = 0; i < 3; ++i)
+{
+	if (s[i][0]==s[i][1]&&s[i][1]==s[i][2])
+	{
+		c=check(s[i][0]);
+		if(c==1) break;
+	}
+}
+for (int i = 0; i < 3; ++i)
+{
+	if (s[0][i]==s[1][i]&&s[1][i]==s[2][i]&&c==0)
+	{
+		c=check(s[0][i]);
+		if(c==1) break;
+	}
+}
+if (s[0][0]==s[1][1]&&s[1][1]==s[2][2]&&c==0)
+{
+	c=check(s[0][0]);
+}
+if (s[0][2]==s[1][1]&&s[1][1]==s[2][0]&&c==0)
+{
+	c=check(s[0][2]);
+}
+debug(c);
+if (c==0)
+{
+	cout<<"DRAW"<<nline;
+}
+
+}
+
+
+
 int main() {
 #ifndef ONLINE_JUDGE
 	freopen("Error.txt", "w", stderr);
 #endif
   optimize();
-  map<int, int>m;
-  vector<pair<ll, ll>> a(5);
-  for (int i = 0; i < 5; ++i)
-  {
-  	cin>>a[i].fi>>a[i].se;
+  
+  w(t){
+    themagician();
   }
-  sort(all(a),compare);
-  for (int i = 0; i < 5; ++i)
-  {
-  	cout<<a[i].fi<<" "<<a[i].se<<nline;
-  }
-  cout<<"|";
-  
-  debug(m);
-  
-  
   
 return 0;
 }
