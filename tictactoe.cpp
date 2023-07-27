@@ -183,23 +183,23 @@ int main()
 	while(flag==0)
 	{
 		int t=1;
-		print(s);
 		cout<<"Player 1(X) turn"<<endl;
 		cout<<"Enter the box value:"<<endl;
 		int a;
 		cin>>a;
 		value(s,a,t);
 		flag=tic(s);
+		print(s);
 		if (flag==1)
 		{
 			break;
 		}
 		t++;
-		print(s);
 		cout<<"Player 2(O) turn"<<endl;
 		cout<<"Enter the box value:"<<endl;
 		cin>>a;
 		value(s,a,t);
+		
 		flag=tic(s);
 		
 		

@@ -1,4 +1,3 @@
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -41,8 +40,8 @@ typedef map<char, ll> mcl;
 #define magica(v, n) {for(int I = 0; I < n < ; I++) cout << (v)[I] << " ";}
 #define magicv(v)     for (auto &x : v) {cout << x << " ";}
 #define magicvp(v)     for (auto &x : v) {cout << x.fi << " "<<x.se<<endl;}
-#define nl cout <<"\n"
-#define nline "\n"
+#define nline cout <<"\n"
+#define nl "\n"
 
 // debug code 
 
@@ -84,36 +83,62 @@ const int INF=1e9 +10;
 // const ll INF 0x3f3f3f3f3f3f3f3fLL;
 double acc = 1e-6;
 
-bool compare(pair<int,int> a,pair<int,int> b)
+void themagician(){
+	ll n;
+	cin>>n;
+vector<ll> v,a,b;
+v(x)
+a=v;
+sort(all(a));
+// vector<pair<ll, int>> c;
+// for (int i = 0; i < n; ++i)
+// {
+// 	ll e=v[i];
+// 	int f=i;
+// 	c[i]={e,f};
+// }
+debug(a);
+loop(n)
 {
-	if (a.first!=b.first)
+	if ((v[i]%2)==0)
 	{
-		return a.first>b.first;
+		b.pb(1);
 	}
-	return a.second<b.second;
+	else
+		b.pb(0);
 }
+debug(b)
+loop(n)
+{
+	for (int j = i+1; j < n; ++j)
+	{
+		if(v[i]>v[j]&&b[i]==b[j])
+		{
+			swap(v[i],v[j]);
+		}
+	}
+}
+debug(v)
+if (v==a)
+{
+	YES;
+}
+else
+NO;
+
+}
+
+
+
 int main() {
 #ifndef ONLINE_JUDGE
 	freopen("Error.txt", "w", stderr);
 #endif
   optimize();
-  map<int, int>m;
-  vector<pair<ll, ll>> a(5);
-  for (int i = 0; i < 5; ++i)
-  {
-  	cin>>a[i].fi>>a[i].se;
+  
+  w(t){
+    themagician();
   }
-  sort(all(a),compare);
-  for (int i = 0; i < 5; ++i)
-  {
-  	cout<<a[i].fi<<" "<<a[i].se<<nline;
-  }
-  cout<<"|";
-  
-  debug(m);
-  
-  
   
 return 0;
 }
-

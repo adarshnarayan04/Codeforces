@@ -41,8 +41,8 @@ typedef map<char, ll> mcl;
 #define magica(v, n) {for(int I = 0; I < n < ; I++) cout << (v)[I] << " ";}
 #define magicv(v)     for (auto &x : v) {cout << x << " ";}
 #define magicvp(v)     for (auto &x : v) {cout << x.fi << " "<<x.se<<endl;}
-#define nl cout <<"\n"
-#define nline "\n"
+#define nline cout <<"\n"
+#define nl "\n"
 
 // debug code 
 
@@ -70,7 +70,9 @@ template <class T, class V> void _print(pair <T, V> p) {cerr << "{"; _print(p.fi
 template <class T> void _print(vector <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <class T> void _print(set <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <class T> void _print(multiset <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
-template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {cerr<<"{";_print(i.fi); cerr << " ";_print(i.se);cerr<<"}";cerr<<" ";} cerr << "]";}
+template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
+template <class T, class V> void _print(unordered_map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
+//template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {cerr<<"{";_print(i.fi); cerr << " ";_print(i.se);cerr<<"}";cerr<<" ";} cerr << "]";}
 
 
 int gcd(int a, int b) { return b == 0 ? a : gcd(b, a % b); }
@@ -82,13 +84,69 @@ const int N=1e5 +10;
 const int INF=1e9 +10;
 // const ll INF 0x3f3f3f3f3f3f3f3fLL;
 double acc = 1e-6;
-bool compare(pair<int,int> a,pair<int,int> b)
+
+void themagician(){
+ll n;
+cin>>n;
+vector<ll> v,b,d;
+v(x);
+d=v;
+unordered_map<ll, ll> m;
+for (int i = 0; i < n; ++i)
 {
-	if (a.first!=b.first)
+	m[v[i]]=i;
+}
+sort(all(d));
+
+debug(d);
+debug(m)
+
+
+loop(n)
+{
+	if ((v[i]%2)==0)
 	{
-		return a.first>b.first;
+		b.pb(0);
 	}
-	return a.second<b.second;
+	else
+		b.pb(1);
+}
+
+loop(n)
+{
+ debug(i);
+	ll z=m[d[i]];
+	debug(z)
+
+	if (b[i]==(d[i]%2))
+	{
+		swap(v[i],v[z]);
+		auto it=m.find(v[i]);
+		auto it1=m.find(v[z]);
+		(*it).fi=v[z];
+		(*it).se=i;
+		(*it1).fi=v[i];
+		(*it1).se=z;
+		
+	}
+	debug(m)
+	debug(v)
+
+	if(b[i]!=(d[i]%2))
+	{
+		NO;
+		return;
+
+	}
+	
+}
+
+if (v==d)
+{
+	YES;
+}
+else
+NO;
 }
 
 
@@ -100,70 +158,7 @@ int main() {
   optimize();
   
   w(t){
-    ll n,m,h,rank=1;
-cin>>n>>m>>h;
-vector<ll> a[n];
-vector<ll> p(n),s(n,0),sum(n,0);
-//p(n) is total time of submission of answer sum(n) is total pleantly time
-vector<pair<ll,ll>>score(n);
-for (int i = 0; i < n; ++i)
-{
-	for (int j = 0; j < m; ++j)
-	{
-		int x;
-		cin>>x;
-		a[i].pb(x);
-	}
-	
-}
-for (int i = 0; i < n; ++i)
-{
-	sort(a[i].begin(),a[i].end());
-	debug(a[i]);
-	for (int j = 0; j < m; ++j)
-	{
-		if ((p[i]+a[i][j])>h)
-		{
-			break;
-		}
-		// if (j==0&&a[i][j]<=h)
-		// {
-		// 	p[i]=a[i][j];
-		// 	sum[i]=p[i];
-		// 	s[i]++;
-		// 	// YES;
-		// }
-		// else if ((p[i]+a[i][j])>h)
-		// {
-		// 	break;
-		// }
-		else if ((p[i]+a[i][j])<=h)//p[i]+a[i][j]) it is total time if this question is solved if greater than no need to include
-		{
-			p[i]+=a[i][j];
-			sum[i]+=p[i];
-			s[i]++;
-		}
-		
-		
-	}
-	score[i]={s[i],-sum[i]};
-	
-}
-ll x=score[0].first;
-ll y=score[0].second;
-pair<ll,ll> ans;
-ans={x,y};
-debug(score);
-//sort(score.begin(),score.end(),compare);
-debug(ans);
-for (int i = 1; i < n; ++i)
-{
-	if(ans<score[i])
-	{
-		rank++;
-	}
-}
-op(rank);
+    themagician();
   }
   
 return 0;

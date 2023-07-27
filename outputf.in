@@ -1,43 +1,6 @@
-USE THE NUMBER MARKED ON BOX TO PUT X OR O ON ITPlayer 1 use X
-Player 2 use O
-1|2|3
-------
-4|5|6
-------
-7|8|9
- | | 
-------
- | | 
-------
- | | 
-Player 1(X) turn
-Enter the box value:
-X| | 
-------
- | | 
-------
- | | 
-Player 2(O) turn
-Enter the box value:
-X| | 
-------
-O| | 
-------
- | | 
-Player 1(X) turn
-Enter the box value:
-X|X| 
-------
-O| | 
-------
- | | 
-Player 2(O) turn
-Enter the box value:
-X|X| 
-------
-O|O| 
-------
- | | 
-Player 1(X) turn
-Enter the box value:
-Player 1(X) WIN
+NO
+NO
+NO
+NO
+YES
+NO
