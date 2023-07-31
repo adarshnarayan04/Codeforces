@@ -72,7 +72,7 @@ template <class T> void _print(set <T> v) {cerr << "[ "; for (T i : v) {_print(i
 template <class T> void _print(multiset <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <class T, class V> void _print(unordered_map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
-//template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {cerr<<"{";_print(i.fi); cerr << " ";_print(i.se);cerr<<"}";cerr<<" ";} cerr << "]";}
+/*template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {cerr<<"{";_print(i.fi); cerr << " ";_print(i.se);cerr<<"}";cerr<<" ";} cerr << "]";}*/
 
 
 int gcd(int a, int b) { return b == 0 ? a : gcd(b, a % b); }
@@ -86,23 +86,89 @@ const int INF=1e9 +10;
 double acc = 1e-6;
 
 void themagician(){
-ll n;
-cin>>n;
-vector<ll> v,b,d;
-v(x);
-d=v;
-sort(all(d));
-loop(n)
+ll n,k,c=0;
+cin>>n>>k;
+multiset<pair<int,int>> s;
+for (int i = 0; i < n; ++i)
 {
-	if ((v[i]%2)!=d[i]%2)
-	{	
-	 NO;
-	 debug(i)
-	 return;
+	ll a;
+	cin>>a;
+	s.insert({a,-i});
+}
+debug(k)
+debug(s);
+while(c!=n)
+{
+	ll f,g;
+	auto it=s.end();
+	it--;
+	ll m=(*it).fi;
+	ll n=(*it).se;
+	debug(m)
+	debug(n)
+	g=n;
+	s.erase(it);
+	if(m<=0) break;
+	if (m>0)
+	{
+		f=m-k;
+		m=f;
+		s.insert({f,g});		
 	}
 	
+	if(m<=0)
+	{
+		c++;
+		cout<<-n+1<<" ";
+		debug(-n+1)
+		
+	}
+	debug(s)
+	debug(c)
+
+	
 }
-YES;
+	nline;
+// vector<ll>v;
+// v(x);
+// while(c!=n)
+// {
+// 	ll m=v[0];
+	
+// 	for (int j = 1; j < n; ++j)
+// 	{
+// 		m=max(v[j],m);
+// 	}	
+// 	if (m<0)
+// 	{
+// 		break;
+// 	}
+// 	debug(m)
+// 	for (int l = 0; l< n; ++l)
+// 	{
+// 		if(m==v[l])
+// 		{
+// 			debug(v[l])
+			
+// 			if (v[l]>0)
+// 			{
+// 				v[l]=v[l]-k;
+				
+// 			}
+// 			if(v[l]<=0)
+// 			{
+// 				c++;
+// 				cout<<l+1<<" ";
+// 				break;
+// 			}
+			
+// 		}
+// 	}
+// 	debug(v)
+	
+// }
+// nline;
+
 }
 
 

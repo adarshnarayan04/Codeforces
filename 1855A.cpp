@@ -72,7 +72,7 @@ template <class T> void _print(set <T> v) {cerr << "[ "; for (T i : v) {_print(i
 template <class T> void _print(multiset <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <class T, class V> void _print(unordered_map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
-//template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {cerr<<"{";_print(i.fi); cerr << " ";_print(i.se);cerr<<"}";cerr<<" ";} cerr << "]";}
+/*template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {cerr<<"{";_print(i.fi); cerr << " ";_print(i.se);cerr<<"}";cerr<<" ";} cerr << "]";}*/
 
 
 int gcd(int a, int b) { return b == 0 ? a : gcd(b, a % b); }
@@ -86,23 +86,24 @@ const int INF=1e9 +10;
 double acc = 1e-6;
 
 void themagician(){
-ll n;
+ll n,c=0;
 cin>>n;
-vector<ll> v,b,d;
+vector<ll>v;
 v(x);
-d=v;
-sort(all(d));
 loop(n)
 {
-	if ((v[i]%2)!=d[i]%2)
-	{	
-	 NO;
-	 debug(i)
-	 return;
+	if (i+1==v[i])
+	{
+		c++;
 	}
-	
 }
-YES;
+if (c%2==0&&c!=0)
+{
+	c/=2;
+}
+else if(c%2==1&&c!=0)
+c=c/2+1;
+op(c)
 }
 
 

@@ -1,3 +1,4 @@
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -70,6 +71,7 @@ template <class T> void _print(vector <T> v) {cerr << "[ "; for (T i : v) {_prin
 template <class T> void _print(set <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <class T> void _print(multiset <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
+template <class T, class V> void _print(unordered_map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
 /*template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {cerr<<"{";_print(i.fi); cerr << " ";_print(i.se);cerr<<"}";cerr<<" ";} cerr << "]";}*/
 
 
@@ -84,48 +86,18 @@ const int INF=1e9 +10;
 double acc = 1e-6;
 
 void themagician(){
-	ll n;
-	cin>>n;
-vector<ll> v,a,b;
-v(x)
-a=v;
-sort(all(a));
-// vector<pair<ll, int>> c;
-// for (int i = 0; i < n; ++i)
-// {
-// 	ll e=v[i];
-// 	int f=i;
-// 	c[i]={e,f};
-// }
-debug(a);
-loop(n)
+ll a,ans=0;
+cin>>a;
+loop1(a)
 {
-	if ((v[i]%2)==0)
+	if (a%i==0)
 	{
-		b.pb(1);
+		ans++;
 	}
 	else
-		b.pb(0);
+		break;
 }
-debug(b)
-loop(n)
-{
-	for (int j = i+1; j < n; ++j)
-	{
-		if(v[i]>v[j]&&b[i]==b[j])
-		{
-			swap(v[i],v[j]);
-		}
-	}
-}
-debug(v)
-if (v==a)
-{
-	YES;
-}
-else
-NO;
-
+op(ans)
 }
 
 
@@ -142,3 +114,4 @@ int main() {
   
 return 0;
 }
+

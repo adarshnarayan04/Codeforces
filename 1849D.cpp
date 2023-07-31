@@ -41,8 +41,8 @@ typedef map<char, ll> mcl;
 #define magica(v, n) {for(int I = 0; I < n < ; I++) cout << (v)[I] << " ";}
 #define magicv(v)     for (auto &x : v) {cout << x << " ";}
 #define magicvp(v)     for (auto &x : v) {cout << x.fi << " "<<x.se<<endl;}
-#define nline cout <<"\n"
-#define nl "\n"
+#define nl cout <<"\n"
+#define nline "\n"
 
 // debug code 
 
@@ -72,7 +72,7 @@ template <class T> void _print(set <T> v) {cerr << "[ "; for (T i : v) {_print(i
 template <class T> void _print(multiset <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <class T, class V> void _print(unordered_map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
-//template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {cerr<<"{";_print(i.fi); cerr << " ";_print(i.se);cerr<<"}";cerr<<" ";} cerr << "]";}
+/*template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {cerr<<"{";_print(i.fi); cerr << " ";_print(i.se);cerr<<"}";cerr<<" ";} cerr << "]";}*/
 
 
 int gcd(int a, int b) { return b == 0 ? a : gcd(b, a % b); }
@@ -85,37 +85,91 @@ const int INF=1e9 +10;
 // const ll INF 0x3f3f3f3f3f3f3f3fLL;
 double acc = 1e-6;
 
-void themagician(){
-ll n;
-cin>>n;
-vector<ll> v,b,d;
-v(x);
-d=v;
-sort(all(d));
-loop(n)
-{
-	if ((v[i]%2)!=d[i]%2)
-	{	
-	 NO;
-	 debug(i)
-	 return;
-	}
-	
-}
-YES;
-}
-
-
 
 int main() {
 #ifndef ONLINE_JUDGE
 	freopen("Error.txt", "w", stderr);
 #endif
   optimize();
+  ll n,c=0;
+  cin>>n;
+  vector<ll>v;
+  v(x);
+  vector<ll>f(n,0);
+  for (int i = 0; i < n-1; ++i)
+  {
+  	if (i!=(n-1))
+  	{
+  		
   
-  w(t){
-    themagician();
+  	if (f[i]==0)
+  	{
+  		if (v[i]>0)
+  		{
+  			if (v[i+1]>0)
+  			{
+  				c++;
+  				f[i]=1;
+  			    f[i+1]=1;
+  			    v[i]--;
+  			    debug(1)
+  			   
+  			    
+  			}
+  			else
+  			{
+  				c++;
+  				f[i]++;
+  			    f[i+1]=1;
+  			    v[i]--;
+  			    debug(2)
+  			}
+  			
+  		}
+  		else
+  		{
+  			if (v[i+1]>0)
+  			{ 
+  			    c++;
+  			    f[i+1]++;  			    
+  			    f[i]++;
+  			    v[i+1]--;
+  			    debug(3)
+  			}
+  			else
+  			{
+  				c++;
+  				f[i]++;
+  				debug(4)
+  			}
+  			
+  		}
+  	}
+  	else if (f[i]>0)
+  	{
+  		if (v[i]>0)
+  		{  			
+  			
+  			    f[i+1]++;
+  			    v[i]--;
+  			    debug(5)
+    		
+  		}
+  	}
   }
+  	if (i==(n-1))
+  	{
+  		/* code */
+  	}
+  	debug(i)
+  	debug(c)
+  	debug(f)
+  }
+
+
+ 
+  op(c)
+  
   
 return 0;
 }
