@@ -193,12 +193,12 @@ const int INF=1e9 +10;
 double acc = 1e-6;
 
 void themagician(){
-ll n;
-cin>>n;
-vector<ll>v;
-v(x);
-debug(v)
-cout<<v<<nl;
+ll n=10;
+
+string s=to_string(n);
+debug(s)
+cout<<s;
+cout<<s[0];
 }
 
 
