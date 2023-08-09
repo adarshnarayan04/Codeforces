@@ -75,112 +75,6 @@ template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i
 template <class T, class V> void _print(unordered_map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
 /*template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {cerr<<"{";_print(i.fi); cerr << " ";_print(i.se);cerr<<"}";cerr<<" ";} cerr << "]";}*/
 
-//to print stl template
-//cout<<variable_name to print that variable(set,vector,map)
-
-template <typename T>
-using min_heap = priority_queue<T, vector<T>, greater<T>>;
-template <typename T>
-using max_heap = priority_queue<T>;
- 
-template <typename T>
-ostream &operator<<(ostream &os, min_heap<T> H)
-{
-    while (!H.empty())
-    {
-        os << H.top() << " ";
-        H.pop();
-    }
-    os << endl;
-    return os << "";
-}
- 
-template <typename T>
-ostream &operator<<(ostream &os, max_heap<T> H)
-{
-    while (!H.empty())
-    {
-        os << H.top() << " ";
-        H.pop();
-    }
-    os << endl;
-    return os << "";
-}
- 
-template <typename F, typename S>
-ostream &operator<<(ostream &os, pair<F, S> P)
-{
-    return os << P.first << " " << P.second;
-}
- 
-template <typename T>
-ostream &operator<<(ostream &os, vector<T> arr)
-{
-    for (int i = 0; i < (int)arr.size(); i++)
-    {
-        os << arr[i] << " ";
-    }
-    return os << "";
-}
- 
-template <typename T>
-ostream &operator<<(ostream &os, vector<vector<T>> matrix)
-{
-    os << endl;
-    for (int i = 0; i < (int)matrix.size(); i++)
-    {
-        for (int j = 0; j < (int)matrix[i].size(); j++)
-        {
-            os << matrix[i][j] << " ";
-        }
-        os << endl;
-    }
-    return os << "";
-}
- 
-template <typename T>
-ostream &operator<<(ostream &os, set<T> S)
-{
-    for (auto s : S)
-    {
-        os << s << " ";
-    }
-    return os << "";
-}
- 
-template <typename T>
-ostream &operator<<(ostream &os, multiset<T> S)
-{
-    for (auto s : S)
-    {
-        os << s << " ";
-    }
-    return os << "";
-}
- 
-template <typename F, typename S>
-ostream &operator<<(ostream &os, map<F, S> M)
-{
-    os << endl;
-    for (auto m : M)
-    {
-        os << m << endl;
-    }
-    return os << "";
-}
- 
-template <typename F, typename S>
-ostream &operator<<(ostream &os, multimap<F, S> M)
-{
-    os << endl;
-    for (auto m : M)
-    {
-        os << m << endl;
-    }
-    return os << "";
-}
-
-//end
 
 int gcd(int a, int b) { return b == 0 ? a : gcd(b, a % b); }
 bool cmp(int c, int d) { return c > d; }
@@ -193,12 +87,37 @@ const int INF=1e9 +10;
 double acc = 1e-6;
 
 void themagician(){
-ll n;
-cin>>n;
+ll n,k,c=1,m=0;
+cin>>n>>k;
 vector<ll>v;
 v(x);
+sort(all(v));
+debug(k)
 debug(v)
-cout<<v<<nl;
+if (n==1)
+{
+	cout<<0<<nl;
+	return;
+}
+	
+
+loop(n-1)
+{
+	if (v[i+1]-v[i]<=k)
+	{
+		c++;
+		m=max(m,c);
+	}
+	else
+		c=1;
+}
+debug(m)
+if (m==0)
+{
+	cout<<1<<nl;
+	return;
+}
+cout<<n-m<<nl;
 }
 
 

@@ -35,15 +35,14 @@ typedef map<ll, ll> mll;
 typedef unordered_map<string, int> msl;
 typedef map<char, ll> mcl;
 #define loop(n) for (int(i) = 0; i < (n); i++)
-#define loopj(n) for (int(j) = 0; j < (n); j++)
 #define loop1(n) for (int(i) = 1; i <= n; i++)
 #define loops(i, n) for (int(i) = 1; i <= n; i++)
 
 #define magica(v, n) {for(int I = 0; I < n < ; I++) cout << (v)[I] << " ";}
 #define magicv(v)     for (auto &x : v) {cout << x << " ";}
 #define magicvp(v)     for (auto &x : v) {cout << x.fi << " "<<x.se<<endl;}
-#define nline cout <<"\n"
-#define nl "\n"
+#define nl cout <<"\n"
+#define nline "\n"
 
 // debug code 
 
@@ -192,15 +191,20 @@ const int INF=1e9 +10;
 // const ll INF 0x3f3f3f3f3f3f3f3fLL;
 double acc = 1e-6;
 
-void themagician(){
-ll n;
-cin>>n;
-vector<ll>v;
-v(x);
-debug(v)
-cout<<v<<nl;
-}
 
+void themagician(){
+ll n;cin>>n;
+vector<ll>v={4,7,44,47,74,77,444,447,474,477,744,747,774,777};
+debug(v)
+loop(v.size()){
+	if (n==v[i]||n%v[i]==0)
+	{
+		YES;
+		return;
+	}
+}
+NO
+}
 
 
 int main() {
@@ -209,9 +213,9 @@ int main() {
 #endif
   optimize();
   
-  w(t){
-    themagician();
-  }
+  themagician();
+
+  
   
 return 0;
 }

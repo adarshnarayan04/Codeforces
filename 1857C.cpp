@@ -76,7 +76,6 @@ template <class T, class V> void _print(unordered_map <T, V> v) {cerr << "[ "; f
 /*template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {cerr<<"{";_print(i.fi); cerr << " ";_print(i.se);cerr<<"}";cerr<<" ";} cerr << "]";}*/
 
 //to print stl template
-//cout<<variable_name to print that variable(set,vector,map)
 
 template <typename T>
 using min_heap = priority_queue<T, vector<T>, greater<T>>;
@@ -182,6 +181,7 @@ ostream &operator<<(ostream &os, multimap<F, S> M)
 
 //end
 
+
 int gcd(int a, int b) { return b == 0 ? a : gcd(b, a % b); }
 bool cmp(int c, int d) { return c > d; }
 
@@ -193,12 +193,42 @@ const int INF=1e9 +10;
 double acc = 1e-6;
 
 void themagician(){
-ll n;
-cin>>n;
-vector<ll>v;
+ll a;
+unordered_map<ll,ll>hash;
+cin>>a;
+ll n=a*(a-1)/2;
+vector<ll>v,ans;
 v(x);
 debug(v)
-cout<<v<<nl;
+loop(n)
+{
+	hash[v[i]]++;
+}
+for(auto &it:hash)
+{
+	ll y=a;
+	while(it.se>0)
+	{
+		ans.pb(it.fi);
+		it.se=it.se-(y--)+1;
+		debug(y)
+	}
+}
+
+ll m=*max_element(all(ans));
+debug(m)
+while (ans.size()<a)
+{
+	ans.pb(m+1);
+	m++;
+}
+
+//sort(all(ans));
+//debug(hash)
+debug(ans)
+//magicv(ans);
+cout<<ans;
+nline;
 }
 
 

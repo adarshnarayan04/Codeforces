@@ -75,112 +75,6 @@ template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i
 template <class T, class V> void _print(unordered_map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
 /*template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {cerr<<"{";_print(i.fi); cerr << " ";_print(i.se);cerr<<"}";cerr<<" ";} cerr << "]";}*/
 
-//to print stl template
-//cout<<variable_name to print that variable(set,vector,map)
-
-template <typename T>
-using min_heap = priority_queue<T, vector<T>, greater<T>>;
-template <typename T>
-using max_heap = priority_queue<T>;
- 
-template <typename T>
-ostream &operator<<(ostream &os, min_heap<T> H)
-{
-    while (!H.empty())
-    {
-        os << H.top() << " ";
-        H.pop();
-    }
-    os << endl;
-    return os << "";
-}
- 
-template <typename T>
-ostream &operator<<(ostream &os, max_heap<T> H)
-{
-    while (!H.empty())
-    {
-        os << H.top() << " ";
-        H.pop();
-    }
-    os << endl;
-    return os << "";
-}
- 
-template <typename F, typename S>
-ostream &operator<<(ostream &os, pair<F, S> P)
-{
-    return os << P.first << " " << P.second;
-}
- 
-template <typename T>
-ostream &operator<<(ostream &os, vector<T> arr)
-{
-    for (int i = 0; i < (int)arr.size(); i++)
-    {
-        os << arr[i] << " ";
-    }
-    return os << "";
-}
- 
-template <typename T>
-ostream &operator<<(ostream &os, vector<vector<T>> matrix)
-{
-    os << endl;
-    for (int i = 0; i < (int)matrix.size(); i++)
-    {
-        for (int j = 0; j < (int)matrix[i].size(); j++)
-        {
-            os << matrix[i][j] << " ";
-        }
-        os << endl;
-    }
-    return os << "";
-}
- 
-template <typename T>
-ostream &operator<<(ostream &os, set<T> S)
-{
-    for (auto s : S)
-    {
-        os << s << " ";
-    }
-    return os << "";
-}
- 
-template <typename T>
-ostream &operator<<(ostream &os, multiset<T> S)
-{
-    for (auto s : S)
-    {
-        os << s << " ";
-    }
-    return os << "";
-}
- 
-template <typename F, typename S>
-ostream &operator<<(ostream &os, map<F, S> M)
-{
-    os << endl;
-    for (auto m : M)
-    {
-        os << m << endl;
-    }
-    return os << "";
-}
- 
-template <typename F, typename S>
-ostream &operator<<(ostream &os, multimap<F, S> M)
-{
-    os << endl;
-    for (auto m : M)
-    {
-        os << m << endl;
-    }
-    return os << "";
-}
-
-//end
 
 int gcd(int a, int b) { return b == 0 ? a : gcd(b, a % b); }
 bool cmp(int c, int d) { return c > d; }
@@ -197,8 +91,14 @@ ll n;
 cin>>n;
 vector<ll>v;
 v(x);
-debug(v)
-cout<<v<<nl;
+ll sum=accumulate(v.begin(),v.end(),0);
+// cout<<sum<<nl;
+if (sum%2!=0)
+{
+	NO;
+}
+else
+YES;
 }
 
 
