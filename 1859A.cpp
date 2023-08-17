@@ -37,6 +37,7 @@ typedef map<ll, ll> mll;
 typedef unordered_map<string, int> msl;
 typedef map<char, ll> mcl;
 #define loop(n) for (int(i) = 0; i < (n); i++)// use loop(n-1) if not want loop to act on last number
+#define loopj(n) for (int(j) = 0; j < (n); j++)
 #define loop1(n) for (int(i) = 1; i <= n; i++)
 #define loop1n(n) for (int(i) = 1; i < n; i++)//or use loop1(n-1)
 #define loops(i, n) for (int(i) = 1; i <= n; i++)
@@ -44,8 +45,8 @@ typedef map<char, ll> mcl;
 #define magica(v, n) {for(int I = 0; I < n < ; I++) cout << (v)[I] << " ";}
 #define magicv(v)     for (auto &x : v) {cout << x << " ";}
 #define magicvp(v)     for (auto &x : v) {cout << x.fi << " "<<x.se<<endl;}
-#define nl cout <<"\n"
-#define nline "\n"
+#define nline cout <<"\n"
+#define nl "\n"
 
 // debug code 
 
@@ -191,35 +192,55 @@ bool cmp(int c, int d) { return c > d; }
 const unsigned int M = 1e9+7;
 const int N=1e5 +10;
 const int INF=1e9 +10;
-// const ll INF 0x3f3f3f3f3f3f3f3fLL;
+// const ll INF 0x3f3f3f3f3f3f3f3fLL;b.pb(v[i]);
+
 double acc = 1e-6;
 
-
 void themagician(){
-in(a)in(b)
-if(a==0&&b==0)
+in(n);
+vector<ll>v,b,c;
+vector<ll>x(n,0);
+v(n);
+sort(all(v),greater<ll>());
+debug(v)
+ll m=v[0];
+for (int i = 0; i < n; ++i)
 {
-    NO;
-    return;
+	if (m==v[i])
+	{
+		c.push_back(v[i]);
+		x[i]=1;
+	}
 }
-if (abs(a-b)==0||abs(a-b)==1)
+loop(n){
+	if (x[i]==0)
+	{
+		b.pb(v[i]);
+	}
+}
+if (b.size()==n||b.size()==0)
 {
-    YES;
+	cout<<-1<<nl;
+	return;
 }
-else
-NO;
+else{
+	cout<<b.size()<<" "<<c.size()<<nl;
+	cout<<b<<nl;
+	cout<<c<<nl;
 }
+}
+
 
 
 int main() {
 #ifndef ONLINE_JUDGE
-    freopen("Error.txt", "w", stderr);
+	freopen("Error.txt", "w", stderr);
 #endif
   optimize();
   
-  themagician();
-
-  
+  w(t){
+    themagician();
+  }
   
 return 0;
 }

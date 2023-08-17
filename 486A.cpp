@@ -196,24 +196,42 @@ double acc = 1e-6;
 
 
 void themagician(){
-in(a)in(b)
-if(a==0&&b==0)
+ull n;cin>>n;
+ll sum=0;
+if (n&1)
 {
-    NO;
-    return;
-}
-if (abs(a-b)==0||abs(a-b)==1)
-{
-    YES;
+	
+	sum=(n-1)/2-n;
+	
 }
 else
-NO;
+{
+	sum=n/2;
+}
+op(sum)
+// ull s=n*(n+1)/2;
+// ll z;
+// if (n&1)
+// {
+// 	debug(1)
+// 	ull x=(n+1)/2;
+// 	debug(x)
+// 	z=x*x;
+// }
+// else
+// {
+// 	ull x=n/2;
+// 	z=x*x;
+// }
+// debug(s)
+// debug(z)
+// cout<<s-2*z;
 }
 
 
 int main() {
 #ifndef ONLINE_JUDGE
-    freopen("Error.txt", "w", stderr);
+	freopen("Error.txt", "w", stderr);
 #endif
   optimize();
   

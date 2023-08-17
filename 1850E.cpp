@@ -1,3 +1,4 @@
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -6,11 +7,8 @@ using namespace std;
 #define popcount(x)     __builtin_popcountll(x)
 
 #define w(t)            ll testcase; cin>>testcase; for (ll tc = 1; tc <= testcase; ++tc)
-#define v(n) for(int i = 0; i < n; ++i){int x;cin>>x;v.pb(x);}
-//if need to create vector of fixed size use other variable name than v like z(n)
-//as v(n) will run this (we can only take input in v using this)
-#define vm(n) for(int i = 0; i < n; ++i){int x;cin>>x;v.pb(x);m.pb(x);}
-#define in(var) ll var;cin>>var;
+#define v(x) for(int i = 0; i < n; ++i){int x;cin>>x;v.pb(x);}
+#define vm(x) for(int i = 0; i < n; ++i){int x;cin>>x;v.pb(x);m.pb(x);}
 #define op(var) cout<<var<<"\n";
 #define pb push_back
 #define sz(x) (int) (x).size()
@@ -36,16 +34,16 @@ typedef vector<vl> vvl;
 typedef map<ll, ll> mll;
 typedef unordered_map<string, int> msl;
 typedef map<char, ll> mcl;
-#define loop(n) for (int(i) = 0; i < (n); i++)// use loop(n-1) if not want loop to act on last number
+#define loop(n) for (int(i) = 0; i < (n); i++)
+#define loopj(n) for (int(j) = 0; j < (n); j++)
 #define loop1(n) for (int(i) = 1; i <= n; i++)
-#define loop1n(n) for (int(i) = 1; i < n; i++)//or use loop1(n-1)
 #define loops(i, n) for (int(i) = 1; i <= n; i++)
 
 #define magica(v, n) {for(int I = 0; I < n < ; I++) cout << (v)[I] << " ";}
 #define magicv(v)     for (auto &x : v) {cout << x << " ";}
 #define magicvp(v)     for (auto &x : v) {cout << x.fi << " "<<x.se<<endl;}
-#define nl cout <<"\n"
-#define nline "\n"
+#define nline cout <<"\n"
+#define nl "\n"
 
 // debug code 
 
@@ -77,112 +75,6 @@ template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i
 template <class T, class V> void _print(unordered_map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
 /*template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {cerr<<"{";_print(i.fi); cerr << " ";_print(i.se);cerr<<"}";cerr<<" ";} cerr << "]";}*/
 
-//to print stl template
-//cout<<variable_name to print that variable(set,vector,map)
-
-template <typename T>
-using min_heap = priority_queue<T, vector<T>, greater<T>>;
-template <typename T>
-using max_heap = priority_queue<T>;
- 
-template <typename T>
-ostream &operator<<(ostream &os, min_heap<T> H)
-{
-    while (!H.empty())
-    {
-        os << H.top() << " ";
-        H.pop();
-    }
-    os << endl;
-    return os << "";
-}
- 
-template <typename T>
-ostream &operator<<(ostream &os, max_heap<T> H)
-{
-    while (!H.empty())
-    {
-        os << H.top() << " ";
-        H.pop();
-    }
-    os << endl;
-    return os << "";
-}
- 
-template <typename F, typename S>
-ostream &operator<<(ostream &os, pair<F, S> P)
-{
-    return os << P.first << " " << P.second;
-}
- 
-template <typename T>
-ostream &operator<<(ostream &os, vector<T> arr)
-{
-    for (int i = 0; i < (int)arr.size(); i++)
-    {
-        os << arr[i] << " ";
-    }
-    return os << "";
-}
- 
-template <typename T>
-ostream &operator<<(ostream &os, vector<vector<T>> matrix)
-{
-    os << endl;
-    for (int i = 0; i < (int)matrix.size(); i++)
-    {
-        for (int j = 0; j < (int)matrix[i].size(); j++)
-        {
-            os << matrix[i][j] << " ";
-        }
-        os << endl;
-    }
-    return os << "";
-}
- 
-template <typename T>
-ostream &operator<<(ostream &os, set<T> S)
-{
-    for (auto s : S)
-    {
-        os << s << " ";
-    }
-    return os << "";
-}
- 
-template <typename T>
-ostream &operator<<(ostream &os, multiset<T> S)
-{
-    for (auto s : S)
-    {
-        os << s << " ";
-    }
-    return os << "";
-}
- 
-template <typename F, typename S>
-ostream &operator<<(ostream &os, map<F, S> M)
-{
-    os << endl;
-    for (auto m : M)
-    {
-        os << m << endl;
-    }
-    return os << "";
-}
- 
-template <typename F, typename S>
-ostream &operator<<(ostream &os, multimap<F, S> M)
-{
-    os << endl;
-    for (auto m : M)
-    {
-        os << m << endl;
-    }
-    return os << "";
-}
-
-//end
 
 int gcd(int a, int b) { return b == 0 ? a : gcd(b, a % b); }
 bool cmp(int c, int d) { return c > d; }
@@ -194,32 +86,28 @@ const int INF=1e9 +10;
 // const ll INF 0x3f3f3f3f3f3f3f3fLL;
 double acc = 1e-6;
 
-
 void themagician(){
-in(a)in(b)
-if(a==0&&b==0)
+ll n,c;
+cin>>n>>c;
+vector<ll>v;
+v(x);
+loop(n)
 {
-    NO;
-    return;
+	
 }
-if (abs(a-b)==0||abs(a-b)==1)
-{
-    YES;
 }
-else
-NO;
-}
+
 
 
 int main() {
 #ifndef ONLINE_JUDGE
-    freopen("Error.txt", "w", stderr);
+	freopen("Error.txt", "w", stderr);
 #endif
   optimize();
   
-  themagician();
-
-  
+  w(t){
+    themagician();
+  }
   
 return 0;
 }

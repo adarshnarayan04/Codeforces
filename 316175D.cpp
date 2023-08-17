@@ -196,24 +196,40 @@ double acc = 1e-6;
 
 
 void themagician(){
-in(a)in(b)
-if(a==0&&b==0)
+in(a)in(b)in(c)in(d)
+if (a+b-c==d)
 {
-    NO;
-    return;
+	YES;
+	return;
 }
-if (abs(a-b)==0||abs(a-b)==1)
+else if (a+b*c==d)
 {
-    YES;
+	YES;
+	return;
 }
-else
+else if (a-b*c==d)
+{
+	YES;return;
+}
+else if (a-b+c==d)
+{
+	YES;return;
+}
+else if (a*b+c==d)
+{
+	YES;return;
+}
+else if (a*b-c==d)
+{
+	YES;return;
+}
 NO;
 }
 
 
 int main() {
 #ifndef ONLINE_JUDGE
-    freopen("Error.txt", "w", stderr);
+	freopen("Error.txt", "w", stderr);
 #endif
   optimize();
   

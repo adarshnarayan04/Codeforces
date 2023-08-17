@@ -37,6 +37,7 @@ typedef map<ll, ll> mll;
 typedef unordered_map<string, int> msl;
 typedef map<char, ll> mcl;
 #define loop(n) for (int(i) = 0; i < (n); i++)// use loop(n-1) if not want loop to act on last number
+#define loopj(n) for (int(j) = 0; j < (n); j++)
 #define loop1(n) for (int(i) = 1; i <= n; i++)
 #define loop1n(n) for (int(i) = 1; i < n; i++)//or use loop1(n-1)
 #define loops(i, n) for (int(i) = 1; i <= n; i++)
@@ -44,8 +45,8 @@ typedef map<char, ll> mcl;
 #define magica(v, n) {for(int I = 0; I < n < ; I++) cout << (v)[I] << " ";}
 #define magicv(v)     for (auto &x : v) {cout << x << " ";}
 #define magicvp(v)     for (auto &x : v) {cout << x.fi << " "<<x.se<<endl;}
-#define nl cout <<"\n"
-#define nline "\n"
+#define nline cout <<"\n"
+#define nl "\n"
 
 // debug code 
 
@@ -193,33 +194,85 @@ const int N=1e5 +10;
 const int INF=1e9 +10;
 // const ll INF 0x3f3f3f3f3f3f3f3fLL;
 double acc = 1e-6;
-
-
+void fill(ll &w,ll &l,ll &s)
+{
+	for (int i = 0; i>0; ++i)
+	{
+		ll c=2*(l+i);
+		if (c%4!=0&&w-i>=0)
+	  {
+		w-=i;
+		s+=l*i;
+	  }
+	  debug(w)
+	  debug(i)
+	  if (w-i<0)
+	  {
+		break;
+	  }
+	}
+	
+}
 void themagician(){
-in(a)in(b)
-if(a==0&&b==0)
-{
-    NO;
-    return;
+in(w);
+in(l);
+
+ll a=w*l;
+ll b=w;
+debug(a)
+ll s=0;
+int i=1;
+while(a-s!=1||s>a){
+	ll g=max(w,l);
+ll f=min(w,l);
+w=f;
+l=g;
+debug(w)
+debug(l)
+	fill(w,l,s);
+	
+	// debug(i)
+	// ll c=2*(l+i);
+	// if (c%4!=0&&b-i>=0)
+	// {
+	// 	b-=i;
+	// 	s+=l*i;
+	// }
+	// debug(s)
+	// debug(b)
+	
+	if (s==a)
+	{
+		YES;
+		return;
+	}
+	// if (b-i<0)
+	// {
+	// 	break;
+	// }
+	// else if (s>a)
+	// {
+	// 	NO;
+	// 	return;
+	// }
+	// i++;
+	// debug(s)
+	// debug(b)
 }
-if (abs(a-b)==0||abs(a-b)==1)
-{
-    YES;
-}
-else
 NO;
 }
 
 
+
 int main() {
 #ifndef ONLINE_JUDGE
-    freopen("Error.txt", "w", stderr);
+	freopen("Error.txt", "w", stderr);
 #endif
   optimize();
   
-  themagician();
-
-  
+  w(t){
+    themagician();
+  }
   
 return 0;
 }

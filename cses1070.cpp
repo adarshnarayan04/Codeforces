@@ -36,9 +36,9 @@ typedef vector<vl> vvl;
 typedef map<ll, ll> mll;
 typedef unordered_map<string, int> msl;
 typedef map<char, ll> mcl;
-#define loop(n) for (int(i) = 0; i < (n); i++)// use loop(n-1) if not want loop to act on last number
+#define loop(n) for (int(i) = 0; i < (n); i++)
 #define loop1(n) for (int(i) = 1; i <= n; i++)
-#define loop1n(n) for (int(i) = 1; i < n; i++)//or use loop1(n-1)
+#define loop1n(n) for (int(i) = 1; i < n; i++)
 #define loops(i, n) for (int(i) = 1; i <= n; i++)
 
 #define magica(v, n) {for(int I = 0; I < n < ; I++) cout << (v)[I] << " ";}
@@ -196,24 +196,36 @@ double acc = 1e-6;
 
 
 void themagician(){
-in(a)in(b)
-if(a==0&&b==0)
+in(n);
+vector<ll>z(n);
+ll x=1;
+for (int i = 0; i < n; i+=2)
 {
-    NO;
-    return;
+	z[i]=x++;
 }
-if (abs(a-b)==0||abs(a-b)==1)
+for (int i = 1; i < n; i+=2)
 {
-    YES;
+	z[i]=x++;
+}debug(z)
+loop(n-1){
+	if(abs(z[i+1]-z[i])>=2)
+	{
+		
+	}
+	else
+	{
+		cout<<"NO SOLUTION";
+		return;
+	}
 }
-else
-NO;
+cout<<z;
+
 }
 
 
 int main() {
 #ifndef ONLINE_JUDGE
-    freopen("Error.txt", "w", stderr);
+	freopen("Error.txt", "w", stderr);
 #endif
   optimize();
   

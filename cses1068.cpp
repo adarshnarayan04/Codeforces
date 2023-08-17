@@ -1,3 +1,4 @@
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -6,11 +7,8 @@ using namespace std;
 #define popcount(x)     __builtin_popcountll(x)
 
 #define w(t)            ll testcase; cin>>testcase; for (ll tc = 1; tc <= testcase; ++tc)
-#define v(n) for(int i = 0; i < n; ++i){int x;cin>>x;v.pb(x);}
-//if need to create vector of fixed size use other variable name than v like z(n)
-//as v(n) will run this (we can only take input in v using this)
-#define vm(n) for(int i = 0; i < n; ++i){int x;cin>>x;v.pb(x);m.pb(x);}
-#define in(var) ll var;cin>>var;
+#define v(x) for(int i = 0; i < n; ++i){int x;cin>>x;v.pb(x);}
+#define vm(x) for(int i = 0; i < n; ++i){int x;cin>>x;v.pb(x);m.pb(x);}
 #define op(var) cout<<var<<"\n";
 #define pb push_back
 #define sz(x) (int) (x).size()
@@ -36,16 +34,16 @@ typedef vector<vl> vvl;
 typedef map<ll, ll> mll;
 typedef unordered_map<string, int> msl;
 typedef map<char, ll> mcl;
-#define loop(n) for (int(i) = 0; i < (n); i++)// use loop(n-1) if not want loop to act on last number
+#define loop(n) for (int(i) = 0; i < (n); i++)
+#define loopj(n) for (int(j) = 0; j < (n); j++)
 #define loop1(n) for (int(i) = 1; i <= n; i++)
-#define loop1n(n) for (int(i) = 1; i < n; i++)//or use loop1(n-1)
 #define loops(i, n) for (int(i) = 1; i <= n; i++)
 
 #define magica(v, n) {for(int I = 0; I < n < ; I++) cout << (v)[I] << " ";}
 #define magicv(v)     for (auto &x : v) {cout << x << " ";}
 #define magicvp(v)     for (auto &x : v) {cout << x.fi << " "<<x.se<<endl;}
-#define nl cout <<"\n"
-#define nline "\n"
+#define nline cout <<"\n"
+#define nl "\n"
 
 // debug code 
 
@@ -194,32 +192,32 @@ const int INF=1e9 +10;
 // const ll INF 0x3f3f3f3f3f3f3f3fLL;
 double acc = 1e-6;
 
-
 void themagician(){
-in(a)in(b)
-if(a==0&&b==0)
+ll n;cin>>n;
+cout<<n<<" ";
+debug(n)
+while(n!=1)
 {
-    NO;
-    return;
+	if(n&1){
+		n=n*3+1;
+	}
+	else
+		n/=2;
+	cout<<n<<" ";
 }
-if (abs(a-b)==0||abs(a-b)==1)
-{
-    YES;
 }
-else
-NO;
-}
+
 
 
 int main() {
 #ifndef ONLINE_JUDGE
-    freopen("Error.txt", "w", stderr);
+	freopen("Error.txt", "w", stderr);
 #endif
   optimize();
   
-  themagician();
-
-  
+ 
+    themagician();
+ 
   
 return 0;
 }
