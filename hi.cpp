@@ -19,7 +19,7 @@ using namespace std;
 #define mp make_pair
 #define fl(i,a,n) for(ll i=a;i<n;i++)
 #define all(x) (x).begin(), (x).end()
-#define optimize() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define FastIO() ios_base::sync_with_stdio(false);cin.tie(NULL);
 #define YES cout<<"YES\n";
 #define NO cout<<"NO\n";
 #define eps 1e-8;
@@ -37,15 +37,17 @@ typedef map<ll, ll> mll;
 typedef unordered_map<string, int> msl;
 typedef map<char, ll> mcl;
 #define loop(n) for (int(i) = 0; i < (n); i++)// use loop(n-1) if not want loop to act on last number
-#define loop1(n) for (int(i) = 1; i <= n; i++)
-#define loop1n(n) for (int(i) = 1; i < n; i++)//or use loop1(n-1)
-#define loops(i, n) for (int(i) = 1; i <= n; i++)
+#define loopj(n) for (int(j) = 0; j < (n); j++)
+#define loop1(n) for (int(i) = 1; i < n; i++)
+#define loop1n(n) for (int(i) = 1; i <= n; i++)//or use loop1(n-1)
+#define loopn1(n) for (int(i) = n-1; i>=0; i--)
+#define loops(i, n) for (int(i) = 1; i < n; i++)
 
 #define magica(v, n) {for(int I = 0; I < n < ; I++) cout << (v)[I] << " ";}
 #define magicv(v)     for (auto &x : v) {cout << x << " ";}
 #define magicvp(v)     for (auto &x : v) {cout << x.fi << " "<<x.se<<endl;}
-#define nl cout <<"\n"
-#define nline "\n"
+#define nline cout <<"\n"
+#define nl "\n"
 
 // debug code 
 
@@ -194,32 +196,52 @@ const int INF=1e9 +10;
 // const ll INF 0x3f3f3f3f3f3f3f3fLL;
 double acc = 1e-6;
 
-
 void themagician(){
-in(a)in(b)
-if(a==0&&b==0)
+in(m)in(k)in(a)in(b)
+ll x=min(b*k,(m/k)*k);
+b-=x;
+ll z=m-x;
+z-=a;
+if (z<=0)
 {
-    NO;
+    cout<<0<<nl;
     return;
 }
-if (abs(a-b)==0||abs(a-b)==1)
+ll fk=z/k;
+ll f1=z%k;
+ll a1,a2=fk+f1;
+//a2 is always applicable ans but we have see that a soln exist that is less than a2
+//that's why we take min as we want min ans
+if (a>=k-(z%k)&&f1!=0)
 {
-    YES;
+    if (b>0)
+    {
+        a1=fk;
+    }
+    else
+    a1=fk+1;
+op((a1))//in case when f1=0 a2=fk+0 will be min case but this will give fk+1 as o/p by removind a regular coin and 
+//removed that case so need of min
 }
 else
-NO;
+{
+    op(a2)
 }
+
+
+}
+
 
 
 int main() {
 #ifndef ONLINE_JUDGE
     freopen("Error.txt", "w", stderr);
 #endif
-  optimize();
+  FastIO();
   
-  themagician();
-
-  
+  w(t){
+    themagician();
+  }
   
 return 0;
 }

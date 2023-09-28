@@ -198,36 +198,33 @@ double acc = 1e-6;
 
 void themagician(){
 in(n)
-
-ll mi=INT_MAX,ma=0;
-ll mii,mai;
-loop(n)
+bool c=1;
+in(a)in(b)
+loop(n-1)
 {
-   in(x);
-
-   if (x>=ma)
-   {
-      ma=x;
-      mai=i+1;
-   }
-   if (x<=mi)
-   {
-      mi=x;
-      mii=i+1;
-   }
-   
+    in(x)in(y)
+    if (x>=a)
+    {
+        if (y>=b)
+        {
+            if (c==1)
+            {
+                cout<<-1<<nl;
+            }
+            c=0;
+            
+        }
+        
+        
+    }
+    
 }
-debug(ma)
-debug(mi)
-debug(mai)
-debug(mii)
-if (ma-mi>=(abs(mai-mii)+1))
+if (c==1)
 {
-   YES;
-   cout<<min(mii,mai)<<" "<<max(mii,mai)<<nl;
+   op(a)
 }
-else
-NO;
+
+
 
 }
 
@@ -235,7 +232,7 @@ NO;
 
 int main() {
 #ifndef ONLINE_JUDGE
-   freopen("Error.txt", "w", stderr);
+    freopen("Error.txt", "w", stderr);
 #endif
   FastIO();
   
@@ -245,3 +242,4 @@ int main() {
   
 return 0;
 }
+

@@ -19,7 +19,7 @@ using namespace std;
 #define mp make_pair
 #define fl(i,a,n) for(ll i=a;i<n;i++)
 #define all(x) (x).begin(), (x).end()
-#define optimize() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define FastIO() ios_base::sync_with_stdio(false);cin.tie(NULL);
 #define YES cout<<"YES\n";
 #define NO cout<<"NO\n";
 #define eps 1e-8;
@@ -38,9 +38,10 @@ typedef unordered_map<string, int> msl;
 typedef map<char, ll> mcl;
 #define loop(n) for (int(i) = 0; i < (n); i++)// use loop(n-1) if not want loop to act on last number
 #define loopj(n) for (int(j) = 0; j < (n); j++)
-#define loop1(n) for (int(i) = 1; i <= n; i++)
-#define loop1n(n) for (int(i) = 1; i < n; i++)//or use loop1(n-1)
-#define loops(i, n) for (int(i) = 1; i <= n; i++)
+#define loop1(n) for (int(i) = 1; i < n; i++)
+#define loop1n(n) for (int(i) = 1; i <= n; i++)//or use loop1(n-1)
+#define loopn1(n) for (int(i) = n-1; i>=0; i--)
+#define loops(i, n) for (int(i) = 1; i < n; i++)
 
 #define magica(v, n) {for(int I = 0; I < n < ; I++) cout << (v)[I] << " ";}
 #define magicv(v)     for (auto &x : v) {cout << x << " ";}
@@ -194,51 +195,41 @@ const int N=1e5 +10;
 const int INF=1e9 +10;
 // const ll INF 0x3f3f3f3f3f3f3f3fLL;
 double acc = 1e-6;
-vector<string>v;
-void gen(string &s,int o,int c)
-{
-	if (o==0&&c==0)
-	{
-		v.pb(s);
-		return;
-	}
-	if (o>0)
-	{
-		s.pb('(');
-		gen(s,o-1,c);
-		s.pop_back();
-	}
-	if (c>0)
-	{
-		if (o<c)
-		{
-			s.pb(')');
-			gen(s,o,c-1);
-			s.pop_back();
-		}
-	}
-}
 
 void themagician(){
-string s;
-cin>>s;
-ll n=s.size();
-
-gen(s,n,n);
-debug(v)
-// loop(v.size())
-// {
-	
-// }
+string s,a,b;cin>>s;
+loop(s.size())
+{
+    a+="()";
+    b+='(';
+}
+loop(s.size())
+{
+    b+=')';
+}
+if (a.find(s)==string::npos)
+{
+    //cout<<(a.find(s));
+    YES;
+    op(a);
+    return;
+}
+if (b.find(s)==string::npos)
+{
+    YES;
+    op(b);
+    return;
+}
+ NO;
 }
 
 
 
 int main() {
 #ifndef ONLINE_JUDGE
-	freopen("Error.txt", "w", stderr);
+    freopen("Error.txt", "w", stderr);
 #endif
-  optimize();
+  FastIO();
   
   w(t){
     themagician();

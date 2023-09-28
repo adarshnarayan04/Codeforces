@@ -201,32 +201,20 @@ in(n)
 
 ll mi=INT_MAX,ma=0;
 ll mii,mai;
-loop(n)
-{
-   in(x);
 
-   if (x>=ma)
-   {
-      ma=x;
-      mai=i+1;
-   }
-   if (x<=mi)
-   {
-      mi=x;
-      mii=i+1;
-   }
-   
-}
-debug(ma)
-debug(mi)
-debug(mai)
-debug(mii)
-if (ma-mi>=(abs(mai-mii)+1))
-{
-   YES;
-   cout<<min(mii,mai)<<" "<<max(mii,mai)<<nl;
-}
-else
+	vl v;
+    v(v,n);
+    loop1(n)
+    {
+        if (abs(v[i]-v[i-1])>=2)
+        {
+            YES;
+            cout<<i<<" "<<i+1<<nl;
+            return;
+        }
+    }
+
+
 NO;
 
 }
@@ -235,7 +223,7 @@ NO;
 
 int main() {
 #ifndef ONLINE_JUDGE
-   freopen("Error.txt", "w", stderr);
+	freopen("Error.txt", "w", stderr);
 #endif
   FastIO();
   
@@ -245,3 +233,4 @@ int main() {
   
 return 0;
 }
+

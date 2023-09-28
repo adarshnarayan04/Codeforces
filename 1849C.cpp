@@ -6,7 +6,7 @@ using namespace std;
 #define popcount(x)     __builtin_popcountll(x)
 
 #define w(t)            ll testcase; cin>>testcase; for (ll tc = 1; tc <= testcase; ++tc)
-#define v(v,n) for(int i = 0; i < n; ++i){int x;cin>>x;v.pb(x);}
+#define v(n) for(int i = 0; i < n; ++i){int x;cin>>x;v.pb(x);}
 //if need to create vector of fixed size use other variable name than v like z(n)
 //as v(n) will run this (we can only take input in v using this)
 #define vm(n) for(int i = 0; i < n; ++i){int x;cin>>x;v.pb(x);m.pb(x);}
@@ -41,7 +41,7 @@ typedef map<char, ll> mcl;
 #define loop1(n) for (int(i) = 1; i < n; i++)
 #define loop1n(n) for (int(i) = 1; i <= n; i++)//or use loop1(n-1)
 #define loopn1(n) for (int(i) = n-1; i>=0; i--)
-#define loops(i, n) for (int(i) = 1; i < n; i++)
+#define loops(i, n) for (int(i) = 1; i <= n; i++)
 
 #define magica(v, n) {for(int I = 0; I < n < ; I++) cout << (v)[I] << " ";}
 #define magicv(v)     for (auto &x : v) {cout << x << " ";}
@@ -197,37 +197,20 @@ const int INF=1e9 +10;
 double acc = 1e-6;
 
 void themagician(){
-in(n)
+in(n)in(m)
+ll x,y;
+string s,a;cin>>s;
 
-ll mi=INT_MAX,ma=0;
-ll mii,mai;
-loop(n)
+unordered_set<string>c;
+loop(m)
 {
-   in(x);
-
-   if (x>=ma)
-   {
-      ma=x;
-      mai=i+1;
-   }
-   if (x<=mi)
-   {
-      mi=x;
-      mii=i+1;
-   }
-   
+	a=s;
+	cin>>x>>y;
+	sort(a.begin()+x-1,a.begin()+y);
+	debug(a)
+	c.insert(a);
 }
-debug(ma)
-debug(mi)
-debug(mai)
-debug(mii)
-if (ma-mi>=(abs(mai-mii)+1))
-{
-   YES;
-   cout<<min(mii,mai)<<" "<<max(mii,mai)<<nl;
-}
-else
-NO;
+cout<<c.size()<<nl;
 
 }
 
@@ -235,7 +218,7 @@ NO;
 
 int main() {
 #ifndef ONLINE_JUDGE
-   freopen("Error.txt", "w", stderr);
+	freopen("Error.txt", "w", stderr);
 #endif
   FastIO();
   
@@ -245,3 +228,4 @@ int main() {
   
 return 0;
 }
+

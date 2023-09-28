@@ -6,7 +6,7 @@ using namespace std;
 #define popcount(x)     __builtin_popcountll(x)
 
 #define w(t)            ll testcase; cin>>testcase; for (ll tc = 1; tc <= testcase; ++tc)
-#define v(v,n) for(int i = 0; i < n; ++i){int x;cin>>x;v.pb(x);}
+#define v(n) for(int i = 0; i < n; ++i){int x;cin>>x;v.pb(x);}
 //if need to create vector of fixed size use other variable name than v like z(n)
 //as v(n) will run this (we can only take input in v using this)
 #define vm(n) for(int i = 0; i < n; ++i){int x;cin>>x;v.pb(x);m.pb(x);}
@@ -197,51 +197,64 @@ const int INF=1e9 +10;
 double acc = 1e-6;
 
 void themagician(){
-in(n)
-
-ll mi=INT_MAX,ma=0;
-ll mii,mai;
-loop(n)
+string s;
+ull a=0,b=1,ans=0;
+cin>>s;
+loop(s.size())
 {
-   in(x);
-
-   if (x>=ma)
-   {
-      ma=x;
-      mai=i+1;
-   }
-   if (x<=mi)
-   {
-      mi=x;
-      mii=i+1;
-   }
-   
+    if (s[i]=='1')
+    {
+        a++;
+    }
 }
-debug(ma)
-debug(mi)
-debug(mai)
-debug(mii)
-if (ma-mi>=(abs(mai-mii)+1))
+// cout<<s.size()<<nl;
+if (a==0)
 {
-   YES;
-   cout<<min(mii,mai)<<" "<<max(mii,mai)<<nl;
+   cout<<0<<nl;
+   return;
+}
+if(a==1)
+{
+    cout<<s.size()/2<<nl;
 }
 else
-NO;
+    cout<<ceil(s.size()/2.0)<<nl;
 
+// cout<<ceil(s.size()/2.0)<<nl;
+// loopn1(s.size())
+// {
+// 	a+=(s[i]-'0')*b;
+// 	b*=2;
+// }
+// if (a==0)
+// {
+// 	cout<<0<<nl;
+// 	return;
+// }
+// debug(a)
+// b=1;
+// while(a>b&&b!=0)
+// {debug(b)
+// //debug(b)
+// 	b*=4;
+	
+// 	ans++;
+	
+// }
+// op(ans)
 }
 
 
 
 int main() {
 #ifndef ONLINE_JUDGE
-   freopen("Error.txt", "w", stderr);
+    freopen("Error.txt", "w", stderr);
 #endif
   FastIO();
   
-  w(t){
     themagician();
-  }
+  
   
 return 0;
 }
+

@@ -193,55 +193,88 @@ bool cmp(int c, int d) { return c > d; }
 const unsigned int M = 1e9+7;
 const int N=1e5 +10;
 const int INF=1e9 +10;
+ll m=998244353;
+
 // const ll INF 0x3f3f3f3f3f3f3f3fLL;
 double acc = 1e-6;
-
+vector<ull> a(2*1e5+1);
 void themagician(){
-in(n)
-
-ll mi=INT_MAX,ma=0;
-ll mii,mai;
-loop(n)
+string s;
+cin>>s;
+debug(s)
+ll c=1;
+ll count=0;
+vl v;
+ull z=1;
+ll l=1;
+loop1(s.size())
 {
-   in(x);
-
-   if (x>=ma)
-   {
-      ma=x;
-      mai=i+1;
-   }
-   if (x<=mi)
-   {
-      mi=x;
-      mii=i+1;
-   }
-   
+	if (s[i]==s[i-1])
+	{
+		c++;
+        l++;
+       
+	}
+	else
+	{
+        if (c!=1)
+        {
+            
+            debug(a[c])
+            //z+=(a[c-1]*c);
+            z*=c;
+            z%=m;
+            
+            debug(z)
+        }
+        
+	
+		
+		count+=c-1;
+		c=1;
+	}
 }
-debug(ma)
-debug(mi)
-debug(mai)
-debug(mii)
-if (ma-mi>=(abs(mai-mii)+1))
+debug(l)
+debug(c)
+if (c!=1)
 {
-   YES;
-   cout<<min(mii,mai)<<" "<<max(mii,mai)<<nl;
+    z*=c;
+    count+=c-1;
 }
-else
-NO;
-
+//debug(a)
+if (count==0)
+{
+    z=1;
+}
+cout<<count<<" "<<((z%m)*(a[l-1]%m)%m)*1ull<<nl;
 }
 
 
 
 int main() {
 #ifndef ONLINE_JUDGE
-   freopen("Error.txt", "w", stderr);
+	freopen("Error.txt", "w", stderr);
 #endif
   FastIO();
   
+  ll e=2*1e5;
+  loop(e+1)
+  {
+  	if (i==0)
+  	{
+  		a[i]=1;
+  	}
+  	else
+  	{
+  		a[i]=(a[i-1]*i)%m;
+  	}
+  
+  }
+
   w(t){
     themagician();
   }
   
 return 0;
 }
+

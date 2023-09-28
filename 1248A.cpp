@@ -6,7 +6,7 @@ using namespace std;
 #define popcount(x)     __builtin_popcountll(x)
 
 #define w(t)            ll testcase; cin>>testcase; for (ll tc = 1; tc <= testcase; ++tc)
-#define v(v,n) for(int i = 0; i < n; ++i){int x;cin>>x;v.pb(x);}
+#define v(n) for(int i = 0; i < n; ++i){int x;cin>>x;v.pb(x);}
 //if need to create vector of fixed size use other variable name than v like z(n)
 //as v(n) will run this (we can only take input in v using this)
 #define vm(n) for(int i = 0; i < n; ++i){int x;cin>>x;v.pb(x);m.pb(x);}
@@ -198,50 +198,42 @@ double acc = 1e-6;
 
 void themagician(){
 in(n)
-
-ll mi=INT_MAX,ma=0;
-ll mii,mai;
+ll o=0,e=0,o1=0,e1=0;
 loop(n)
 {
-   in(x);
-
-   if (x>=ma)
-   {
-      ma=x;
-      mai=i+1;
-   }
-   if (x<=mi)
-   {
-      mi=x;
-      mii=i+1;
-   }
-   
+	ll x;
+	cin>>x;
+	if(x&1)
+		o++;
+	else
+		e++;
+	
 }
-debug(ma)
-debug(mi)
-debug(mai)
-debug(mii)
-if (ma-mi>=(abs(mai-mii)+1))
+in(k)
+loop(k)
 {
-   YES;
-   cout<<min(mii,mai)<<" "<<max(mii,mai)<<nl;
+	ll x;
+	cin>>x;
+	if(x&1)
+		o1++;
+	else
+		e1++;
+	
 }
-else
-NO;
-
+cout<<o*o1+e*e1<<nl;
 }
 
 
 
 int main() {
 #ifndef ONLINE_JUDGE
-   freopen("Error.txt", "w", stderr);
+    freopen("Error.txt", "w", stderr);
 #endif
   FastIO();
-  
   w(t){
     themagician();
   }
   
 return 0;
 }
+

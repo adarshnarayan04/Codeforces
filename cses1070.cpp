@@ -197,28 +197,52 @@ double acc = 1e-6;
 
 void themagician(){
 in(n);
-vector<ll>z(n);
-ll x=1;
-for (int i = 0; i < n; i+=2)
+vector<ll>z;
+for (int i = 2; i <=n; i+=2)
 {
-	z[i]=x++;
+    z.pb(i);
 }
-for (int i = 1; i < n; i+=2)
+for (int i = 1; i <=n; i+=2)
 {
-	z[i]=x++;
-}debug(z)
-loop(n-1){
-	if(abs(z[i+1]-z[i])>=2)
-	{
-		
-	}
-	else
-	{
-		cout<<"NO SOLUTION";
-		return;
-	}
+    z.pb(i);
+}
+
+debug(z)
+for (int i = 0; i < n-1; ++i)
+{
+    if (abs(z[i+1]-z[i])>1)
+    {
+            
+    }
+    else
+    {
+        cout<<"NO SOLUTION";
+        return;
+    }
 }
 cout<<z;
+// ll x=1;
+// for (int i = 0; i < n; i+=2)
+// {
+// 	z[i]=x++;
+// }
+// for (int i = 1; i < n; i+=2)
+// {
+// 	z[i]=x++;
+// }
+// debug(z)
+// loop(n-1){
+// 	if(abs(z[i+1]-z[i])>=2)
+// 	{
+		
+// 	}
+// 	else
+// 	{
+// 		cout<<"NO SOLUTION";
+// 		return;
+// 	}
+// }
+// cout<<z;
 
 }
 

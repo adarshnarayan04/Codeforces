@@ -6,7 +6,7 @@ using namespace std;
 #define popcount(x)     __builtin_popcountll(x)
 
 #define w(t)            ll testcase; cin>>testcase; for (ll tc = 1; tc <= testcase; ++tc)
-#define v(v,n) for(int i = 0; i < n; ++i){int x;cin>>x;v.pb(x);}
+#define v(n) for(int i = 0; i < n; ++i){int x;cin>>x;v.pb(x);}
 //if need to create vector of fixed size use other variable name than v like z(n)
 //as v(n) will run this (we can only take input in v using this)
 #define vm(n) for(int i = 0; i < n; ++i){int x;cin>>x;v.pb(x);m.pb(x);}
@@ -197,45 +197,25 @@ const int INF=1e9 +10;
 double acc = 1e-6;
 
 void themagician(){
-in(n)
-
-ll mi=INT_MAX,ma=0;
-ll mii,mai;
-loop(n)
+in(n)in(k1)in(k2)
+vl v;
+v(n)
+loop(k1)
 {
-   in(x);
-
-   if (x>=ma)
-   {
-      ma=x;
-      mai=i+1;
-   }
-   if (x<=mi)
-   {
-      mi=x;
-      mii=i+1;
-   }
-   
+	if (v[i]==n)
+	{
+		YES;
+		return;
+	}
 }
-debug(ma)
-debug(mi)
-debug(mai)
-debug(mii)
-if (ma-mi>=(abs(mai-mii)+1))
-{
-   YES;
-   cout<<min(mii,mai)<<" "<<max(mii,mai)<<nl;
-}
-else
 NO;
-
 }
 
 
 
 int main() {
 #ifndef ONLINE_JUDGE
-   freopen("Error.txt", "w", stderr);
+	freopen("Error.txt", "w", stderr);
 #endif
   FastIO();
   
@@ -245,3 +225,4 @@ int main() {
   
 return 0;
 }
+

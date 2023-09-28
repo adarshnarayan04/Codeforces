@@ -6,7 +6,7 @@ using namespace std;
 #define popcount(x)     __builtin_popcountll(x)
 
 #define w(t)            ll testcase; cin>>testcase; for (ll tc = 1; tc <= testcase; ++tc)
-#define v(v,n) for(int i = 0; i < n; ++i){int x;cin>>x;v.pb(x);}
+#define v(n) for(int i = 0; i < n; ++i){int x;cin>>x;v.pb(x);}
 //if need to create vector of fixed size use other variable name than v like z(n)
 //as v(n) will run this (we can only take input in v using this)
 #define vm(n) for(int i = 0; i < n; ++i){int x;cin>>x;v.pb(x);m.pb(x);}
@@ -19,7 +19,7 @@ using namespace std;
 #define mp make_pair
 #define fl(i,a,n) for(ll i=a;i<n;i++)
 #define all(x) (x).begin(), (x).end()
-#define FastIO() ios_base::sync_with_stdio(false);cin.tie(NULL);
+#define optimize() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 #define YES cout<<"YES\n";
 #define NO cout<<"NO\n";
 #define eps 1e-8;
@@ -37,17 +37,15 @@ typedef map<ll, ll> mll;
 typedef unordered_map<string, int> msl;
 typedef map<char, ll> mcl;
 #define loop(n) for (int(i) = 0; i < (n); i++)// use loop(n-1) if not want loop to act on last number
-#define loopj(n) for (int(j) = 0; j < (n); j++)
-#define loop1(n) for (int(i) = 1; i < n; i++)
-#define loop1n(n) for (int(i) = 1; i <= n; i++)//or use loop1(n-1)
-#define loopn1(n) for (int(i) = n-1; i>=0; i--)
-#define loops(i, n) for (int(i) = 1; i < n; i++)
+#define loop1(n) for (int(i) = 1; i <= n; i++)
+#define loop1n(n) for (int(i) = 1; i < n; i++)//or use loop1(n-1)
+#define loops(i, n) for (int(i) = 1; i <= n; i++)
 
 #define magica(v, n) {for(int I = 0; I < n < ; I++) cout << (v)[I] << " ";}
 #define magicv(v)     for (auto &x : v) {cout << x << " ";}
 #define magicvp(v)     for (auto &x : v) {cout << x.fi << " "<<x.se<<endl;}
-#define nline cout <<"\n"
-#define nl "\n"
+#define nl cout <<"\n"
+#define nline "\n"
 
 // debug code 
 
@@ -196,52 +194,43 @@ const int INF=1e9 +10;
 // const ll INF 0x3f3f3f3f3f3f3f3fLL;
 double acc = 1e-6;
 
+
 void themagician(){
 in(n)
-
-ll mi=INT_MAX,ma=0;
-ll mii,mai;
-loop(n)
+in(k)
+vl v;
+v(n)
+ll a,z=0;
+while(z!=n)
 {
-   in(x);
-
-   if (x>=ma)
-   {
-      ma=x;
-      mai=i+1;
-   }
-   if (x<=mi)
-   {
-      mi=x;
-      mii=i+1;
-   }
-   
+	z=0;
+	loop(n)
+	{
+		if (v[i]>0)
+		{
+			v[i]-=k;
+			a=i;
+		}
+		else
+			z++;
+			
+		
+	}
 }
-debug(ma)
-debug(mi)
-debug(mai)
-debug(mii)
-if (ma-mi>=(abs(mai-mii)+1))
-{
-   YES;
-   cout<<min(mii,mai)<<" "<<max(mii,mai)<<nl;
+op(a+1)
 }
-else
-NO;
-
-}
-
 
 
 int main() {
 #ifndef ONLINE_JUDGE
-   freopen("Error.txt", "w", stderr);
+	freopen("Error.txt", "w", stderr);
 #endif
-  FastIO();
+  optimize();
   
-  w(t){
-    themagician();
-  }
+  themagician();
+
+  
   
 return 0;
 }
+
