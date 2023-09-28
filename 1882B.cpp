@@ -211,8 +211,8 @@ loop(n)
 	}
 }
 
-// debug(m)
-// debug(z)
+debug(m)
+debug(z)
 ll ans=INT_MAX;
 loop(n)
 { ll c=0;
