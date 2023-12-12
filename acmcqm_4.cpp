@@ -1,0 +1,263 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define ll long long
+#define ull unsigned long long
+#define popcount(x)     __builtin_popcountll(x)
+
+#define w(t)            ll testcase; cin>>testcase; for (ll tc = 1; tc <= testcase; ++tc)
+#define vin(v,n) for(int i = 0; i < n; ++i){int x;cin>>x;v.pb(x);}
+//vin(vector name,number of times you want to take  input)
+#define vm(n) for(int i = 0; i < n; ++i){int x;cin>>x;v.pb(x);m.pb(x);}
+#define in(var) ll var;cin>>var;
+#define op(var) cout<<var<<"\n";
+#define pb push_back
+#define sz(x) (int) (x).size()
+#define fi first
+#define se second
+#define mp make_pair
+#define fl(i,a,n) for(ll i=a;i<n;i++)
+#define all(x) (x).begin(), (x).end()
+#define FastIO() ios_base::sync_with_stdio(false);cin.tie(NULL);
+#define YES cout<<"YES\n";
+#define NO cout<<"NO\n";
+#define eps 1e-8;
+
+typedef pair<ll, ll> pll;
+typedef pair<char, ll> pcl;
+typedef pair<string, string> pss;
+typedef vector<pll> vpll;
+typedef vector<pcl> vpcl;
+typedef vector<ll> vl;
+typedef vector<vl> vvl;
+typedef map<ll, ll> mll;
+typedef unordered_map<string, int> msl;
+typedef map<char, ll> mcl;
+#define loop(n) for (int(i) = 0; i < (n); i++)// use loop(n-1) if not want loop to act on last number
+#define loopj(n) for (int(j) = 0; j < (n); j++)
+#define loop1(n) for (int(i) = 1; i < n; i++)
+#define loop1n(n) for (int(i) = 1; i <= n; i++)//or use loop1(n-1)
+#define loopn1(n) for (int(i) = n-1; i>=0; i--)
+#define loops(i, n) for (int(i) = 1; i < n; i++)
+
+#define magica(v, n) {for(int I = 0; I < n < ; I++) cout << (v)[I] << " ";}
+#define magicv(v)     for (auto &x : v) {cout << x << " ";}
+#define magicvp(v)     for (auto &x : v) {cout << x.fi << " "<<x.se<<endl;}
+#define nline cout <<"\n"
+#define nl "\n"
+
+// debug code 
+
+
+#ifndef ONLINE_JUDGE
+#define debug(x) cerr << #x <<" "; _print(x); cerr << endl;
+#else
+#define debug(x)
+#endif
+
+void _print(ll t) {cerr << t;}
+void _print(int t) {cerr << t;}
+void _print(string t) {cerr << t;}
+void _print(char t) {cerr << t;}
+void _print(long double t) {cerr << t;}
+void _print(double t) {cerr << t;}
+void _print(ull t) {cerr << t;}
+
+template <class T, class V> void _print(pair <T, V> p);
+template <class T> void _print(vector <T> v);
+template <class T> void _print(set <T> v);
+template <class T, class V> void _print(map <T, V> v);
+template <class T> void _print(multiset <T> v);
+template <class T, class V> void _print(pair <T, V> p) {cerr << "{"; _print(p.fi); cerr << ","; _print(p.se); cerr << "}";}
+template <class T> void _print(vector <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
+template <class T> void _print(set <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
+template <class T> void _print(multiset <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
+template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
+template <class T, class V> void _print(unordered_map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
+/*template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {cerr<<"{";_print(i.fi); cerr << " ";_print(i.se);cerr<<"}";cerr<<" ";} cerr << "]";}*/
+
+//to print stl template
+//cout<<variable_name to print that variable(set,vector,map)
+
+template <typename T>
+using min_heap = priority_queue<T, vector<T>, greater<T>>;
+template <typename T>
+using max_heap = priority_queue<T>;
+ 
+template <typename T>
+ostream &operator<<(ostream &os, min_heap<T> H)
+{
+    while (!H.empty())
+    {
+        os << H.top() << " ";
+        H.pop();
+    }
+    os << endl;
+    return os << "";
+}
+ 
+template <typename T>
+ostream &operator<<(ostream &os, max_heap<T> H)
+{
+    while (!H.empty())
+    {
+        os << H.top() << " ";
+        H.pop();
+    }
+    os << endl;
+    return os << "";
+}
+ 
+template <typename F, typename S>
+ostream &operator<<(ostream &os, pair<F, S> P)
+{
+    return os << P.first << " " << P.second;
+}
+ 
+template <typename T>
+ostream &operator<<(ostream &os, vector<T> arr)
+{
+    for (int i = 0; i < (int)arr.size(); i++)
+    {
+        os << arr[i] << " ";
+    }
+    return os << "";
+}
+ 
+template <typename T>
+ostream &operator<<(ostream &os, vector<vector<T>> matrix)
+{
+    os << endl;
+    for (int i = 0; i < (int)matrix.size(); i++)
+    {
+        for (int j = 0; j < (int)matrix[i].size(); j++)
+        {
+            os << matrix[i][j] << " ";
+        }
+        os << endl;
+    }
+    return os << "";
+}
+ 
+template <typename T>
+ostream &operator<<(ostream &os, set<T> S)
+{
+    for (auto s : S)
+    {
+        os << s << " ";
+    }
+    return os << "";
+}
+ 
+template <typename T>
+ostream &operator<<(ostream &os, multiset<T> S)
+{
+    for (auto s : S)
+    {
+        os << s << " ";
+    }
+    return os << "";
+}
+ 
+template <typename F, typename S>
+ostream &operator<<(ostream &os, map<F, S> M)
+{
+    os << endl;
+    for (auto m : M)
+    {
+        os << m << endl;
+    }
+    return os << "";
+}
+ 
+template <typename F, typename S>
+ostream &operator<<(ostream &os, multimap<F, S> M)
+{
+    os << endl;
+    for (auto m : M)
+    {
+        os << m << endl;
+    }
+    return os << "";
+}
+
+//end
+
+int gcd(int a, int b) { return b == 0 ? a : gcd(b, a % b); }
+bool cmp(int c, int d) { return c > d; }
+
+                         
+const unsigned int M = 1e9+7;
+const int N=1e5 +10;
+const int INF=1e9 +10;
+// const ll INF 0x3f3f3f3f3f3f3f3fLL;
+double acc = 1e-6;
+
+/*----------------------code start here -----------------------------*/
+ll a,b,n;
+int dp[1000+10][10][10];
+int func(int len_left,ll x,ll y)
+{
+	if(x==0&&y==0) return 1;
+	if(dp[len_left][x][y]!=-1) return dp[len_left][x][y];
+	ll c=INT_MAX,d=INT_MAX;
+	if(len_left-a>0&&x>0) 
+	c=func(len_left-a,x-1,y);
+    else if(len_left-a==0&&x>0)
+    {
+    	if(x==1&&y==0)
+    		c=func(n,x-1,y);
+    	else
+    	c=func(n,x-1,y)+1;
+    }
+    else
+    {
+    	if(x>0)
+    	{
+    		
+    	    c=func(n-a,x-1,y)+1;
+    	}
+    	
+    }
+    
+	if(len_left-b>0&&y>0) 
+	d=func(len_left-b,x,y-1);
+    else if(len_left-b==0&&y>0)
+    {
+    	if(y==1&&x==0)
+    		d=func(n,x,y-1);
+    	else;
+    	d=func(n,x,y-1)+1;
+    }
+    else
+    {
+    	if(y>0)
+    	{
+    		
+    		d=func(n-b,x,y-1)+1;
+    	}
+    	
+    }
+    return dp[len_left][x][y]=min(c,d);
+}
+void themagician(){
+cin>>n;
+cin>>a>>b;
+memset(dp,-1,sizeof(dp));
+cout<<func(n,4,2);
+}
+
+
+
+int main() {
+#ifndef ONLINE_JUDGE
+    freopen("Error.txt", "w", stderr);
+#endif
+  FastIO();
+  
+    themagician();
+  
+  
+return 0;
+}
+
