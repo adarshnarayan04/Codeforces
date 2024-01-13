@@ -214,28 +214,44 @@ double acc = 1e-6;
 /*----------------------code start here -----------------------------*/
 
 void themagician(){
-in(n)
-string s;cin>>s;
-ll ans=s.size()-1;//max that number can be formed
-debug(ans)
-loop(n-2)
+in(n)in(m)
+vector<vector<ll>>v(n,vector<ll>(m));
+vector<pair<ll,pair<ll, ll>>>z;
+loop(n)
 {
-    //checking foe each index
-    if(s[i]==s[i+2])//will form duplicate
-        //ex axad----> if remove 1st and 2nd then ad if remove 2nd and 3rd ad
-        // 2nd index(x) will always we removed-->so need to worry about it;
-    {
-        ans--;
-    }
+	loopj(m)
+	{
+		cin>>v[i][j];
+		z.pb({v[i][j],{i,j}});
+	}
 }
-op(ans)
+
+sort(all(z));
+debug(z)
+
+loop(m)
+{	
+        swap(v[z[i].se.fi][i],v[z[i].se.fi][z[i].se.se]);
+        
+    
+}
+debug(z)
+loop(n)
+{
+    loopj(m)
+    {
+        cout<<v[i][j]<<" ";
+    }
+    nline;
+}
+
 }
 
 
 
 int main() {
 #ifndef ONLINE_JUDGE
-    freopen("Error.txt", "w", stderr);
+	freopen("Error.txt", "w", stderr);
 #endif
   FastIO();
   

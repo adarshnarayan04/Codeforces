@@ -214,28 +214,116 @@ double acc = 1e-6;
 /*----------------------code start here -----------------------------*/
 
 void themagician(){
-in(n)
 string s;cin>>s;
-ll ans=s.size()-1;//max that number can be formed
-debug(ans)
-loop(n-2)
+set<ll>one,two,three;
+loop(s.size())
 {
-    //checking foe each index
-    if(s[i]==s[i+2])//will form duplicate
-        //ex axad----> if remove 1st and 2nd then ad if remove 2nd and 3rd ad
-        // 2nd index(x) will always we removed-->so need to worry about it;
-    {
-        ans--;
-    }
+	if(s[i]=='1')
+	{
+		one.insert(i);
+	}
+	else if(s[i]=='2')
+	{
+		two.insert(i);
+	}
+	else
+	{
+		three.insert(i);
+	}
 }
-op(ans)
+ll ans=INF;
+loop(s.size()-2)
+{
+	if(s[i]=='1')
+	{
+		debug("YES")
+		ll x,y;
+		debug(two)
+		if(two.lower_bound(i)!=two.end())
+		{
+			x=*two.lower_bound(i);
+		}
+		else
+			break;
+		if(three.lower_bound(i)!=three.end())
+		{
+			y=*three.lower_bound(i);
+		}
+		else
+		{
+			break;
+		}
+		debug2(x,y)
+		ans=min(ans,(max(x,y)-i+1));
+		if(ans==3)
+		{
+			op(3);
+			return;
+		}
+	}
+	else if(s[i]=='2')
+	{
+		debug("YES")
+		ll x,y;
+		debug(two)
+		if(one.lower_bound(i)!=one.end())
+		{
+			x=*one.lower_bound(i);
+		}
+		else
+			break;
+		if(three.lower_bound(i)!=three.end())
+		{
+			y=*three.lower_bound(i);
+		}
+		else
+		{
+			break;
+		}
+		debug2(x,y)
+		ans=min(ans,(max(x,y)-i+1));
+		if(ans==3)
+		{
+			op(3);
+			return;
+		}
+	}
+	else if(s[i]=='3')
+	{
+		debug("YES")
+		ll x,y;
+		debug(two)
+		if(one.lower_bound(i)!=one.end())
+		{
+			x=*one.lower_bound(i);
+		}
+		else
+			break;
+		if(two.lower_bound(i)!=two.end())
+		{
+			y=*two.lower_bound(i);
+		}
+		else
+		{
+			break;
+		}
+		debug2(x,y)
+		ans=min(ans,(max(x,y)-i+1));
+		if(ans==3)
+		{
+			op(3);
+			return;
+		}
+	}		
+}
+ans==INF?cout<<0<<nl:op(ans);
 }
 
 
 
 int main() {
 #ifndef ONLINE_JUDGE
-    freopen("Error.txt", "w", stderr);
+	freopen("Error.txt", "w", stderr);
 #endif
   FastIO();
   

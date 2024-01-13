@@ -214,20 +214,62 @@ double acc = 1e-6;
 /*----------------------code start here -----------------------------*/
 
 void themagician(){
-in(n)
-string s;cin>>s;
-ll ans=s.size()-1;//max that number can be formed
-debug(ans)
-loop(n-2)
+in(n);
+vl v;
+vin(v,n);
+vl a,b;
+if(n==1||n==2)
 {
-    //checking foe each index
-    if(s[i]==s[i+2])//will form duplicate
-        //ex axad----> if remove 1st and 2nd then ad if remove 2nd and 3rd ad
-        // 2nd index(x) will always we removed-->so need to worry about it;
-    {
-        ans--;
-    }
+	op(0);
+	return;
 }
+a.pb(v[0]);
+b.pb(0);// so that b can be inserted in appropirate posn
+fl(i,1,n)
+{
+    if(v[i]>a[a.size()-1]&&v[i]>b[b.size()-1])
+   {
+      if(a[a.size()-1]>b[b.size()-1])
+      {
+
+        b.pb(v[i]);
+      }
+      else
+        a.pb(v[i]);
+   }
+   else if(a[a.size()-1]==v[i])a.pb(v[i]);
+   else if(b[b.size()-1]==v[i]) b.pb(v[i]);
+   else if(v[i]>a[a.size()-1])
+   {
+
+     b.pb(v[i]);
+     
+   }
+   else if(v[i]>b[b.size()-1])
+   {
+     a.pb(v[i]);
+   }
+   else
+   {
+    if(a[a.size()-1]>b[b.size()-1])
+    {
+        b.pb(v[i]);
+    }
+    else
+        a.pb(v[i]);
+   }
+}
+ll ans=0;
+loop1(a.size())
+{
+	if(a[i]>a[i-1])ans++;
+}
+fl(i,2,b.size())
+{
+	if(b[i]>b[i-1])ans++;
+}
+debug(a)
+debug(b)
 op(ans)
 }
 
@@ -235,7 +277,7 @@ op(ans)
 
 int main() {
 #ifndef ONLINE_JUDGE
-    freopen("Error.txt", "w", stderr);
+	freopen("Error.txt", "w", stderr);
 #endif
   FastIO();
   

@@ -52,22 +52,8 @@ typedef map<char, ll> mcl;
 
 #ifndef ONLINE_JUDGE
 #define debug(x) cerr << #x <<" "; _print(x); cerr << endl;
-#define debug2(x, y)cerr<<#x<<"="<<x<<", "<<#y<<"="<<y<<endl;
-#define debug3(x, y, z)cerr<<#x<<"=" <<x<<", "<<#y<<"="<<y<<", \
-"<<#z<<"="<<z<<endl;
-#define debug4(a, b, c, d)cerr<<#a<<"="<<a<<", "<<#b<<"="<<b<<", \
-"<<#c<<"="<<c<<", "<<#d<<"="<<d<<" "<<endl;
-#define debug5(a, b, c, d, e)cerr<<#a<<"="<<a<<", "<<#b<<"="<<b<<", \
-"<<#c<<"="<<c<<", "<<#d<<"="<<d<<", "<<#e<< "="<<e<<endl;
-#define debug6(a, b, c, d, e, f)cerr<<#a<<"="<<a<<", "<<#b<<"="<<b<<", "<<#c<<"="<< c<<", \
-"<<#d<<"="<<d<<", "<<#e<< "="<<e<<", "<<#f<<"="<<f<<endl;
 #else
 #define debug(x)
-#define debug2(x, y)
-#define debug3(x, y, z)
-#define debug4(a, b, c, d)
-#define debug5(a, b, c, d, e)
-#define debug6(a, b, c, d, e, f)
 #endif
 
 void _print(ll t) {cerr << t;}
@@ -202,7 +188,7 @@ int gcd(int a, int b) { return b == 0 ? a : gcd(b, a % b); }
 bool cmp(int c, int d) { return c > d; }
 bool isPrime(ll n){if(n<=1)return false;if(n<=3)return true;if(n%2==0||n%3==0)return false;for(int i=5;i*i<=n;i=i+6)if(n%i==0||n%(i+2)==0)return false;return true;}
 bool isPowof2(int n){return (n && !(n&(n-1)));}
-bool isPerfectSq(ll n){ll root=sqrtl(n);return root*root==n;}
+bool isPerfectSq(ll n){ld root=sqrtl(n);return root*root==n;}
 
                          
 const unsigned int M = 1e9+7;
@@ -214,19 +200,31 @@ double acc = 1e-6;
 /*----------------------code start here -----------------------------*/
 
 void themagician(){
-in(n)
-string s;cin>>s;
-ll ans=s.size()-1;//max that number can be formed
-debug(ans)
-loop(n-2)
+in(n)in(k)
+vl a,b;
+vin(a,n);
+vin(b,n);
+vl sum(n),m(n);
+sum[0]=a[0];
+m[0]=b[0];
+loop1(n)
 {
-    //checking foe each index
-    if(s[i]==s[i+2])//will form duplicate
-        //ex axad----> if remove 1st and 2nd then ad if remove 2nd and 3rd ad
-        // 2nd index(x) will always we removed-->so need to worry about it;
-    {
-        ans--;
-    }
+sum[i]=sum[i-1]+a[i];
+m[i]=max(m[i-1],b[i]);
+
+}
+
+ll len=min(n,k);
+ll ans=0;
+debug(sum)
+debug(m)
+loop(len)
+{
+	ll val=sum[i];
+	val+=((k-i-1)*m[i]);
+	debug(val)
+	
+	ans=max(ans,val);
 }
 op(ans)
 }
@@ -235,7 +233,7 @@ op(ans)
 
 int main() {
 #ifndef ONLINE_JUDGE
-    freopen("Error.txt", "w", stderr);
+	freopen("Error.txt", "w", stderr);
 #endif
   FastIO();
   

@@ -37,7 +37,7 @@ typedef map<char, ll> mcl;
 #define loop(n) for (int i = 0; i < n; i++)// use loop(n-1) if not want loop to act on last number
 #define loopj(n) for (int(j) = 0; j < (n); j++)
 #define loop1(n) for (int(i) = 1; i < n; i++)
-#define loop1n(n) for (int(i) = 1; i <= n; i++)//or use loop1(n-1)
+#define loop1n(n) for (int(i) = 1; i <= n; i++)//or use loop1(n+1)
 #define loopn1(n) for (int(i) = n-1; i>=0; i--)
 #define loops(i, n) for (int(i) = 1; i < n; i++)
 
@@ -212,37 +212,116 @@ const int INF=1e9 +10;
 double acc = 1e-6;
 
 /*----------------------code start here -----------------------------*/
-
-void themagician(){
-in(n)
-string s;cin>>s;
-ll ans=s.size()-1;//max that number can be formed
-debug(ans)
-loop(n-2)
+bool check(ll i,ll j,vector<vector<ll>>&v)
 {
-    //checking foe each index
-    if(s[i]==s[i+2])//will form duplicate
-        //ex axad----> if remove 1st and 2nd then ad if remove 2nd and 3rd ad
-        // 2nd index(x) will always we removed-->so need to worry about it;
-    {
-        ans--;
-    }
+	if(v[i][j]!=1) return false;
+	if(v[i+1][j]!=1) return false;
+	if(v[i][j+1]!=1) return false;
+	if(v[i+1][j+1]!=1) return false;
+	return true;
+	
 }
-op(ans)
+void themagician(){
+in(n)in(m)
+vector<vector<ll>>v(n,vector<ll>(m));
+vector<vector<ll>>b(n,vector<ll>(m,0));
+vector<pair<ll, ll>>ans;
+ll count=0;
+loop(n)
+{
+	loopj(m)
+	{
+		cin>>v[i][j];
+		if(v[i][j]==0)count++;
+	}
+}
+if(count==(n*m))
+{
+	op(0);
+	return;
+}
+loop(n-1)
+{
+	loopj(m-1)
+	{
+		if(v[i][j]==1)
+		{
+
+				if(b[i][j]==0)
+				{
+					if(check(i,j,v))
+					{
+						ans.pb({i+1,j+1});
+						b[i][j]=1;
+						b[i+1][j]=1;
+						b[i][j+1]=1;
+						b[i+1][j+1]=1;
+					}
+					else
+					{
+						op(-1);
+						return;
+					}
+				}
+				else
+				{
+					if(check(i,j,v))
+					{
+						ans.pb({i+1,j+1});
+						b[i][j]=1;
+						b[i+1][j]=1;
+						b[i][j+1]=1;
+						b[i+1][j+1]=1;
+					}
+				}
+			
+		}
+	}
+}
+if(v!=b)
+{
+	op(-1);
+	return;
+}
+// loop(m)
+// {
+// 	if(v[n-1][i]==1)
+// 	{
+// 		if(b[n-1][i]!=1)
+// 		{
+// 			op(-1);
+// 			return;
+// 		}
+// 	}
+// }
+// loop(n)
+// {
+// 	if(v[i][m-1]==1)
+// 	{
+// 		if(b[i][m-1]!=1)
+// 		{
+// 			op(-1);
+// 			return;
+// 		}
+// 	}
+// }
+
+cout<<ans.size()<<nl;
+magicvp(ans)
 }
 
 
 
 int main() {
 #ifndef ONLINE_JUDGE
-    freopen("Error.txt", "w", stderr);
+	freopen("Error.txt", "w", stderr);
 #endif
   FastIO();
   
-  w(t){
+
   //debug(tc)
     themagician();
-  }
+  
   
 return 0;
 }

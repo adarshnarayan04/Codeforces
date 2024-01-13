@@ -215,27 +215,74 @@ double acc = 1e-6;
 
 void themagician(){
 in(n)
-string s;cin>>s;
-ll ans=s.size()-1;//max that number can be formed
-debug(ans)
-loop(n-2)
+string a,b;
+vl v(2);
+cin>>a>>b;
+ll flag=0;
+vl y(2);
+loop(n)
 {
-    //checking foe each index
-    if(s[i]==s[i+2])//will form duplicate
-        //ex axad----> if remove 1st and 2nd then ad if remove 2nd and 3rd ad
-        // 2nd index(x) will always we removed-->so need to worry about it;
+    
+    if(i==0&&a[i]==b[i])//removing intial equal
     {
-        ans--;
+        flag=1;
+        y[a[i]-'0']++;
+        continue;
     }
+    if(flag==1&&a[i]==b[i])
+    {
+        y[a[i]-'0']++;
+    }
+    if(flag==1&&a[i]!=b[i])
+    {
+        flag=2;
+        v[0]+=y[0];
+        v[1]+=y[1];
+        y.clear();
+    }
+    if(flag==2&&a[i]==b[i])
+    {
+        
+        flag=3;
+        if(v[0]!=v[1])
+        {
+            NO;
+            return;
+        }
+    }
+
+    if(flag==0&&a[i]==b[i])
+    {
+        y[a[i]-'0']++;
+        flag=1;
+        if(v[0]!=v[1])
+        {
+            NO;
+            return;
+        }
+    }
+    if(flag==3&&a[i]!=b[i])
+    {
+        NO;
+        return;
+    }
+    if(a[i]!=b[i])
+    v[a[i]-'0']++;
+debug(v)
+   
+
 }
-op(ans)
+if(v[0]==v[1])
+    {YES;}
+else
+    NO;
 }
 
 
 
 int main() {
 #ifndef ONLINE_JUDGE
-    freopen("Error.txt", "w", stderr);
+	freopen("Error.txt", "w", stderr);
 #endif
   FastIO();
   

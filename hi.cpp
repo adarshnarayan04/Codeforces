@@ -2,13 +2,13 @@
 using namespace std;
 
 #define ll long long
+#define ld long double
 #define ull unsigned long long
 #define popcount(x)     __builtin_popcountll(x)
 
 #define w(t)            ll testcase; cin>>testcase; for (ll tc = 1; tc <= testcase; ++tc)
-#define v(n) for(int i = 0; i < n; ++i){int x;cin>>x;v.pb(x);}
-//if need to create vector of fixed size use other variable name than v like z(n)
-//as v(n) will run this (we can only take input in v using this)
+#define vin(v,n) for(int i = 0; i < n; ++i){int x;cin>>x;v.pb(x);}
+//vin(vector name,number of times you want to take  input)
 #define vm(n) for(int i = 0; i < n; ++i){int x;cin>>x;v.pb(x);m.pb(x);}
 #define in(var) ll var;cin>>var;
 #define op(var) cout<<var<<"\n";
@@ -27,8 +27,6 @@ using namespace std;
 typedef pair<ll, ll> pll;
 typedef pair<char, ll> pcl;
 typedef pair<string, string> pss;
-typedef vector<ll> vi;
-typedef vector<vi> vvl;
 typedef vector<pll> vpll;
 typedef vector<pcl> vpcl;
 typedef vector<ll> vl;
@@ -36,7 +34,7 @@ typedef vector<vl> vvl;
 typedef map<ll, ll> mll;
 typedef unordered_map<string, int> msl;
 typedef map<char, ll> mcl;
-#define loop(n) for (int(i) = 0; i < (n); i++)// use loop(n-1) if not want loop to act on last number
+#define loop(n) for (int i = 0; i < n; i++)// use loop(n-1) if not want loop to act on last number
 #define loopj(n) for (int(j) = 0; j < (n); j++)
 #define loop1(n) for (int(i) = 1; i < n; i++)
 #define loop1n(n) for (int(i) = 1; i <= n; i++)//or use loop1(n-1)
@@ -188,6 +186,9 @@ ostream &operator<<(ostream &os, multimap<F, S> M)
 
 int gcd(int a, int b) { return b == 0 ? a : gcd(b, a % b); }
 bool cmp(int c, int d) { return c > d; }
+bool isPrime(ll n){if(n<=1)return false;if(n<=3)return true;if(n%2==0||n%3==0)return false;for(int i=5;i*i<=n;i=i+6)if(n%i==0||n%(i+2)==0)return false;return true;}
+bool isPowof2(int n){return (n && !(n&(n-1)));}
+bool isPerfectSq(ll n){ld root=sqrtl(n);return root*root==n;}
 
                          
 const unsigned int M = 1e9+7;
@@ -196,39 +197,37 @@ const int INF=1e9 +10;
 // const ll INF 0x3f3f3f3f3f3f3f3fLL;
 double acc = 1e-6;
 
+/*----------------------code start here -----------------------------*/
+
 void themagician(){
-in(m)in(k)in(a)in(b)
-ll x=min(b*k,(m/k)*k);
-b-=x;
-ll z=m-x;
-z-=a;
-if (z<=0)
+string s;
+cin>>s;
+string a,b;
+a.pb(s[0]);
+ll x=0;
+loop1(s.size())
 {
-    cout<<0<<nl;
-    return;
-}
-ll fk=z/k;
-ll f1=z%k;
-ll a1,a2=fk+f1;
-//a2 is always applicable ans but we have see that a soln exist that is less than a2
-//that's why we take min as we want min ans
-if (a>=k-(z%k)&&f1!=0)
-{
-    if (b>0)
-    {
-        a1=fk;
-    }
+    if(s[i]=='0') a.pb(s[i]);
     else
-    a1=fk+1;
-op((a1))//in case when f1=0 a2=fk+0 will be min case but this will give fk+1 as o/p by removind a regular coin and 
-//removed that case so need of min
+    {
+        x=i;
+        break;
+    }
+}
+debug(x)
+for (int i = x; i < s.size(); ++i)
+{
+    b.pb(s[i]);
+}
+debug(a)debug(b)
+ll c=stoi(a);
+ll d=stoi(b);
+if(d>c)
+{
+    cout<<c<<" "<<d<<nl;
 }
 else
-{
-    op(a2)
-}
-
-
+    cout<<-1<<nl;
 }
 
 
@@ -240,6 +239,7 @@ int main() {
   FastIO();
   
   w(t){
+  //debug(tc)
     themagician();
   }
   

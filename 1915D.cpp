@@ -215,19 +215,47 @@ double acc = 1e-6;
 
 void themagician(){
 in(n)
-string s;cin>>s;
-ll ans=s.size()-1;//max that number can be formed
-debug(ans)
-loop(n-2)
+string s,ans;
+cin>>s;
+ll k=0;
+ll i=0;
+while(i<n)
 {
-    //checking foe each index
-    if(s[i]==s[i+2])//will form duplicate
-        //ex axad----> if remove 1st and 2nd then ad if remove 2nd and 3rd ad
-        // 2nd index(x) will always we removed-->so need to worry about it;
+    if(i+2==n-1)
     {
-        ans--;
+        ans.pb(s[i]);
+        ans.pb(s[i+1]);
+        ans.pb(s[i+2]);
+        break;
+
     }
+    if(i+1==n-1)
+    {
+        ans.pb(s[i]);
+        ans.pb(s[i+1]);
+        break;
+        
+    }
+
+			if((i+3<n&&s[i+3]!='e'&&s[i+3]!='a'))
+			{
+				ans.pb(s[i]);
+				ans.pb(s[i+1]);
+				ans.pb(s[i+2]);
+				ans.pb('.');
+				i+=3;
+			}
+		//}
+		else
+		{
+			ans.pb(s[i]);
+			ans.pb(s[i+1]);
+			ans.pb('.');
+			i+=2;
+		}
+	
 }
+//debug(ans)
 op(ans)
 }
 
@@ -235,7 +263,7 @@ op(ans)
 
 int main() {
 #ifndef ONLINE_JUDGE
-    freopen("Error.txt", "w", stderr);
+	freopen("Error.txt", "w", stderr);
 #endif
   FastIO();
   

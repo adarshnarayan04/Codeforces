@@ -202,7 +202,7 @@ int gcd(int a, int b) { return b == 0 ? a : gcd(b, a % b); }
 bool cmp(int c, int d) { return c > d; }
 bool isPrime(ll n){if(n<=1)return false;if(n<=3)return true;if(n%2==0||n%3==0)return false;for(int i=5;i*i<=n;i=i+6)if(n%i==0||n%(i+2)==0)return false;return true;}
 bool isPowof2(int n){return (n && !(n&(n-1)));}
-bool isPerfectSq(ll n){ll root=sqrtl(n);return root*root==n;}
+bool isPerfectSq(ll n){ld root=sqrtl(n);return root*root==n;}
 
                          
 const unsigned int M = 1e9+7;
@@ -214,28 +214,100 @@ double acc = 1e-6;
 /*----------------------code start here -----------------------------*/
 
 void themagician(){
-in(n)
-string s;cin>>s;
-ll ans=s.size()-1;//max that number can be formed
-debug(ans)
-loop(n-2)
+in(n);
+vl v;
+vin(v,n);
+if(n==1) 
 {
-    //checking foe each index
-    if(s[i]==s[i+2])//will form duplicate
-        //ex axad----> if remove 1st and 2nd then ad if remove 2nd and 3rd ad
-        // 2nd index(x) will always we removed-->so need to worry about it;
-    {
-        ans--;
-    }
+	op(1);
+	return;
 }
-op(ans)
+debug(v)
+ll p,ne,o;
+p=ne=o=0;
+ll minpos=INT_MAX;
+vl neg;
+loop(n)
+{
+	if(v[i]>0)
+	{
+		p++;
+		minpos=min(minpos,v[i]);
+		
+	}
+	else if(v[i]<0)
+		{
+			ne++;
+			neg.pb(v[i]);
+		}
+	else o++;
+}
+
+ll ans=0;
+if(ne==0)
+{
+	debug2(o,p)
+	ll z=(o>0)+(p>0);
+	debug(z)
+cout<<max({o,1*1ll,z})<<nl;
+	return;
+}
+if(p==0)
+{
+	cout<<n<<nl;
+	return;
+}
+if(o>1)
+{
+ans=ne+o;
+op(ans);
+return;
+}
+if(neg.size()==1)
+{
+	if(o)
+	{
+		if(minpos<=abs(neg[0]))
+		{
+			op(3);
+			return;
+		}
+		else
+			op(2);
+	}
+	else
+	{
+		op(2)
+	}
+	return;
+}
+sort(all(neg));
+loop1(neg.size())
+{
+	if((abs(neg[i]-neg[i-1]))>=minpos)
+	{
+		
+	}
+	else
+	{
+		op(ne+o);
+		return;
+	}
+	
+}
+ll z=0;
+if(o)
+z=abs(neg[neg.size()-1])>=minpos;
+
+	op(ne+z+1);
+
 }
 
 
 
 int main() {
 #ifndef ONLINE_JUDGE
-    freopen("Error.txt", "w", stderr);
+	freopen("Error.txt", "w", stderr);
 #endif
   FastIO();
   

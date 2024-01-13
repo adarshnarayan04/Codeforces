@@ -214,28 +214,42 @@ double acc = 1e-6;
 /*----------------------code start here -----------------------------*/
 
 void themagician(){
-in(n)
-string s;cin>>s;
-ll ans=s.size()-1;//max that number can be formed
-debug(ans)
-loop(n-2)
+ll n,k;
+cin>>n>>k;
+if(!(n&1))
 {
-    //checking foe each index
-    if(s[i]==s[i+2])//will form duplicate
-        //ex axad----> if remove 1st and 2nd then ad if remove 2nd and 3rd ad
-        // 2nd index(x) will always we removed-->so need to worry about it;
-    {
-        ans--;
-    }
+	ll ans=k%(n);
+	if(ans==0)
+	{
+		ans=n;
+	}	
+	op(ans);
+	return;
 }
-op(ans)
+else
+{
+	ll x=n/2;//repeating time
+	ll y=(k-1)/x;//time repeated
+	debug(y)
+	ll ans=k%(n);
+	
+	debug(ans)
+	ans=(ans+y)%(n);
+	if(ans==0)
+	{
+		ans=n;
+	}
+	op(ans)
+
+
+}
 }
 
 
 
 int main() {
 #ifndef ONLINE_JUDGE
-    freopen("Error.txt", "w", stderr);
+	freopen("Error.txt", "w", stderr);
 #endif
   FastIO();
   

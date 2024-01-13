@@ -214,20 +214,57 @@ double acc = 1e-6;
 /*----------------------code start here -----------------------------*/
 
 void themagician(){
-in(n)
-string s;cin>>s;
-ll ans=s.size()-1;//max that number can be formed
-debug(ans)
-loop(n-2)
+string s;
+cin>>s;
+ll u,d,r,l;
+u=d=r=l=0;
+loop(s.size())
 {
-    //checking foe each index
-    if(s[i]==s[i+2])//will form duplicate
-        //ex axad----> if remove 1st and 2nd then ad if remove 2nd and 3rd ad
-        // 2nd index(x) will always we removed-->so need to worry about it;
-    {
-        ans--;
-    }
+	if(s[i]=='U')u++;
+	else if(s[i]=='D')d++;
+	else if(s[i]=='R')r++;
+	else
+		l++;
 }
+ll x=min(l,r);
+ll y=min(u,d);
+if(x==0||y==0)
+{
+	if(x>0)
+	{
+		cout<<2<<nl;
+		cout<<"LR"<<nl;
+		return;
+	}
+	if(y>0)
+	{
+		cout<<2<<nl;
+		cout<<"UD"<<nl;
+		return;
+	}
+	op(0);
+	return;
+}
+string ans;
+u=d=y;
+l=r=x;
+while(u--)
+{
+	ans.pb('U');
+}
+while(r--)
+{
+	ans.pb('R');
+}
+while(d--)
+{
+	ans.pb('D');
+}
+while(l--)
+{
+	ans.pb('L');
+}
+op(ans.size());
 op(ans)
 }
 
@@ -235,7 +272,7 @@ op(ans)
 
 int main() {
 #ifndef ONLINE_JUDGE
-    freopen("Error.txt", "w", stderr);
+	freopen("Error.txt", "w", stderr);
 #endif
   FastIO();
   

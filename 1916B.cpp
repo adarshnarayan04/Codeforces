@@ -214,20 +214,18 @@ double acc = 1e-6;
 /*----------------------code start here -----------------------------*/
 
 void themagician(){
-in(n)
-string s;cin>>s;
-ll ans=s.size()-1;//max that number can be formed
-debug(ans)
-loop(n-2)
-{
-    //checking foe each index
-    if(s[i]==s[i+2])//will form duplicate
-        //ex axad----> if remove 1st and 2nd then ad if remove 2nd and 3rd ad
-        // 2nd index(x) will always we removed-->so need to worry about it;
-    {
-        ans--;
-    }
+in(a)in(b)
+ll g=gcd(a,b);
+if(g==a)//when b%a==0 means a has no new factors
+{//take exmaple when a=1--> then we can not output b*1/1=b,as x>b
+	// we do x=b*b as in sqaure its max factor will be b(same)
+	// if a!=1 then remove that factor of a from b*b
+	// ans=b*b/a;if(b%a==0 or gcd=a)
+	ll ans=(b*b)/g;
+	op(ans)
+	return;
 }
+ll ans=(a*b)/g;//divided by g as we removed the common factors
 op(ans)
 }
 
@@ -235,7 +233,7 @@ op(ans)
 
 int main() {
 #ifndef ONLINE_JUDGE
-    freopen("Error.txt", "w", stderr);
+	freopen("Error.txt", "w", stderr);
 #endif
   FastIO();
   

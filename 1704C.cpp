@@ -214,21 +214,55 @@ double acc = 1e-6;
 /*----------------------code start here -----------------------------*/
 
 void themagician(){
-in(n)
-string s;cin>>s;
-ll ans=s.size()-1;//max that number can be formed
-debug(ans)
-loop(n-2)
+ll n,k;
+cin>>n>>k;
+//debug2(n,k)
+vl ind;
+vin(ind,k);
+debug(ind)
+sort(all(ind));
+if(k==1)
 {
-    //checking foe each index
-    if(s[i]==s[i+2])//will form duplicate
-        //ex axad----> if remove 1st and 2nd then ad if remove 2nd and 3rd ad
-        // 2nd index(x) will always we removed-->so need to worry about it;
-    {
-        ans--;
-    }
+    if(n==1||n==2)
+        {op(1);}
+    else
+        op(2);
+    return;
 }
-op(ans)
+vl v;
+loop1(k)
+{
+    v.pb(ind[i]-ind[i-1]-1);
+}
+v.pb(n-(ind[k-1]-ind[0]+1));
+sort(all(v),greater<ll>());
+debug(v)
+ll ans=0;
+ll dam=0;
+loop(v.size())
+{
+    if(v[i]-dam>0) ans+=dam;
+    else
+    {
+        ans+=v[i];
+    }
+    if(v[i]-dam<2)
+    {
+        dam+=2;
+    }
+    else if(v[i]-dam==2)
+    {
+        dam+=2;
+        ans++;
+    }
+    else
+    {
+       dam+=4; 
+       ans++;
+    }
+    
+}
+op(ans+k)
 }
 
 

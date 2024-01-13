@@ -215,27 +215,62 @@ double acc = 1e-6;
 
 void themagician(){
 in(n)
-string s;cin>>s;
-ll ans=s.size()-1;//max that number can be formed
-debug(ans)
-loop(n-2)
+string s;
+cin>>s;
+unordered_set<char>sett;
+loop(n)
 {
-    //checking foe each index
-    if(s[i]==s[i+2])//will form duplicate
-        //ex axad----> if remove 1st and 2nd then ad if remove 2nd and 3rd ad
-        // 2nd index(x) will always we removed-->so need to worry about it;
-    {
-        ans--;
-    }
+	sett.insert(s[i]);
 }
-op(ans)
+//Bdebug(sett)
+
+ll mincost=INT_MAX;
+for(auto &x:sett)//choosing which element to delete
+{
+	bool flag=1;
+	ll i=0,j=n-1;
+	ll cost=0;
+	
+	while(i<j)
+	{
+		if(s[i]==s[j]) 
+		{
+			i++;
+			j--;
+		}
+		else
+		{
+			if(s[i]==x)
+			{
+				cost++;
+				i++;
+			}
+			else if(s[j]==x)
+			{
+				cost++;
+				j--;
+			}
+			else
+			{
+				flag=0;
+				break;//means not an pallindrome
+			}
+		}
+	}
+	if(flag)
+	{
+		mincost=min(mincost,cost);
+	}
+	
+}
+mincost==INT_MAX?cout<<-1<<nl:cout<<mincost<<nl;
 }
 
 
 
 int main() {
 #ifndef ONLINE_JUDGE
-    freopen("Error.txt", "w", stderr);
+	freopen("Error.txt", "w", stderr);
 #endif
   FastIO();
   

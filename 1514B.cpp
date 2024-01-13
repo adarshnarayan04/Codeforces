@@ -212,30 +212,38 @@ const int INF=1e9 +10;
 double acc = 1e-6;
 
 /*----------------------code start here -----------------------------*/
-
-void themagician(){
-in(n)
-string s;cin>>s;
-ll ans=s.size()-1;//max that number can be formed
-debug(ans)
-loop(n-2)
+ll binexp(ll a,ll b)
 {
-    //checking foe each index
-    if(s[i]==s[i+2])//will form duplicate
-        //ex axad----> if remove 1st and 2nd then ad if remove 2nd and 3rd ad
-        // 2nd index(x) will always we removed-->so need to worry about it;
-    {
-        ans--;
-    }
+	ll ans=1;
+	while(b)
+	{
+		if(b&1)
+		{
+			ans=(ans*a)%M;
+		}
+		a=(a*a)%M;
+		b>>=1;
+	}
+	return ans;
 }
-op(ans)
+void themagician(){
+in(n)in(k)
+//soln- all number in array of size n will have k bits
+//for and to be zero --> ith bit(1 to k) of any number in array should be zero
+// ex 110
+//    101
+//    011
+//and will be zero as every row of bit an zero bit --> also sum will be max ans only single zero in each row
+// so we have to place an zero in every row bit(can be palced any position)-->sum will be same in all cases--->as same number of bits are present in everu row(think of breaking number into binary and then adding) 
+op(binexp(n,k))
 }
+
 
 
 
 int main() {
 #ifndef ONLINE_JUDGE
-    freopen("Error.txt", "w", stderr);
+	freopen("Error.txt", "w", stderr);
 #endif
   FastIO();
   
