@@ -215,44 +215,30 @@ const ld pi = 3.14159265358979323846;
 /*----------------------code start here -----------------------------*/
 
 void themagician(){
-ll n,k,x;
-cin>>n>>k>>x;
-vl v;
-vin(v,n);
-ll sumnor=accumulate(all(v),0*1ll);
-debug(sumnor);
-sort(all(v),greater<ll>());
-ll sum=0;
-loop(x)
+in(n)
+ll x,y;
+cin>>x>>y;
+ll slopeinf=0;
+map<ld, ll>m;
+loop(n)
 {
-   sum+=v[i];
+	ll x1,y1;
+	cin>>x1>>y1;
+	if(x1==x)
+	{
+		slopeinf=1;
+	}
+	else
+	{
+		ld y2=y-y1;
+		ld x2=x-x1;
+		ld slope=y2/x2;
+		m[slope]++;
+		
+		
+	}
 }
-debug(sum)
-ll anssum=sumnor-2*sum;
-
-loop(k)
-{
-
-   if(i+x<n)
-  {
-   sum+=v[i+x];
-   sum-=v[i];
-   sumnor-=v[i];
-   anssum=max(anssum,sumnor-2*sum);
-   
-  }
-  else
-  {
-      sum-=v[i];
-      sumnor-=v[i];
-      anssum=max(anssum,sumnor-2*sum);
-  }
-
-}
-op(anssum)
-
-debug2(k,x)
-debug(v)
+cout<<m.size()+slopeinf<<nl;
 }
 
 
@@ -263,10 +249,10 @@ int main() {
 #endif
   FastIO();
   
-  w(t){
-  //debug(tc)
+
     themagician();
-  }
+  
   
 return 0;
 }
+

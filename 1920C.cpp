@@ -213,55 +213,45 @@ double acc = 1e-6;
 const ld pi = 3.14159265358979323846;
 
 /*----------------------code start here -----------------------------*/
-
+vl divisor[N];
+void div()
+{
+	for (int i = 2; i < N; ++i)
+	{
+		for (int j = i; j < N; j+=i)
+		{
+			divisor[j].pb(i);
+		}
+	}
+}
 void themagician(){
-ll n,k,x;
-cin>>n>>k>>x;
+in(n)
 vl v;
 vin(v,n);
-ll sumnor=accumulate(all(v),0*1ll);
-debug(sumnor);
-sort(all(v),greater<ll>());
-ll sum=0;
-loop(x)
+vl fact;
+for (int i = 1; i*i <=n; ++i)
 {
-   sum+=v[i];
-}
-debug(sum)
-ll anssum=sumnor-2*sum;
-
-loop(k)
-{
-
-   if(i+x<n)
-  {
-   sum+=v[i+x];
-   sum-=v[i];
-   sumnor-=v[i];
-   anssum=max(anssum,sumnor-2*sum);
-   
-  }
-  else
-  {
-      sum-=v[i];
-      sumnor-=v[i];
-      anssum=max(anssum,sumnor-2*sum);
-  }
+	if(n%i==0)
+	{
+	fact.pb(i);
+	  if(i!=n/i)
+	  {
+		fact.pb(n/i);
+	  }
+	}
 
 }
-op(anssum)
-
-debug2(k,x)
-debug(v)
+debug(fact)
 }
 
 
 
 int main() {
 #ifndef ONLINE_JUDGE
-    freopen("Error.txt", "w", stderr);
+	freopen("Error.txt", "w", stderr);
 #endif
   FastIO();
+  div();
   
   w(t){
   //debug(tc)
@@ -270,3 +260,4 @@ int main() {
   
 return 0;
 }
+

@@ -1,5 +1,3 @@
-#include <bits/stdc++.h>
-using namespace std;
 
 #define ll long long
 #define ld long double
@@ -205,68 +203,6 @@ bool isPowof2(int n){return (n && !(n&(n-1)));}
 bool isPerfectSq(ll n){ll root=sqrtl(n);return root*root==n;}
 
                          
-const unsigned int M = 1e9+7;
-const int N=1e5 +10;
-const int INF=1e9 +10;
-// const ll INF 0x3f3f3f3f3f3f3f3fLL;
-double acc = 1e-6;
-const ld pi = 3.14159265358979323846;
-
-/*----------------------code start here -----------------------------*/
-
-void themagician(){
-ll n,k,x;
-cin>>n>>k>>x;
-vl v;
-vin(v,n);
-ll sumnor=accumulate(all(v),0*1ll);
-debug(sumnor);
-sort(all(v),greater<ll>());
-ll sum=0;
-loop(x)
-{
-   sum+=v[i];
-}
-debug(sum)
-ll anssum=sumnor-2*sum;
-
-loop(k)
-{
-
-   if(i+x<n)
-  {
-   sum+=v[i+x];
-   sum-=v[i];
-   sumnor-=v[i];
-   anssum=max(anssum,sumnor-2*sum);
-   
-  }
-  else
-  {
-      sum-=v[i];
-      sumnor-=v[i];
-      anssum=max(anssum,sumnor-2*sum);
-  }
-
-}
-op(anssum)
-
-debug2(k,x)
-debug(v)
-}
 
 
 
-int main() {
-#ifndef ONLINE_JUDGE
-    freopen("Error.txt", "w", stderr);
-#endif
-  FastIO();
-  
-  w(t){
-  //debug(tc)
-    themagician();
-  }
-  
-return 0;
-}

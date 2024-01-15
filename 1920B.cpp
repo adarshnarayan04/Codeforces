@@ -225,7 +225,7 @@ sort(all(v),greater<ll>());
 ll sum=0;
 loop(x)
 {
-   sum+=v[i];
+	sum+=v[i];
 }
 debug(sum)
 ll anssum=sumnor-2*sum;
@@ -235,17 +235,17 @@ loop(k)
 
    if(i+x<n)
   {
-   sum+=v[i+x];
-   sum-=v[i];
-   sumnor-=v[i];
-   anssum=max(anssum,sumnor-2*sum);
-   
+	sum+=v[i+x];
+	sum-=v[i];
+	sumnor-=v[i];
+	anssum=max(anssum,sumnor-2*sum);
+	
   }
   else
   {
-      sum-=v[i];
-      sumnor-=v[i];
-      anssum=max(anssum,sumnor-2*sum);
+	   sum-=v[i];
+	   sumnor-=v[i];
+	   anssum=max(anssum,sumnor-2*sum);
   }
 
 }
@@ -259,7 +259,7 @@ debug(v)
 
 int main() {
 #ifndef ONLINE_JUDGE
-    freopen("Error.txt", "w", stderr);
+	freopen("Error.txt", "w", stderr);
 #endif
   FastIO();
   
@@ -270,3 +270,4 @@ int main() {
   
 return 0;
 }
+

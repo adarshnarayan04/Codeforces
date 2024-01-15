@@ -215,51 +215,63 @@ const ld pi = 3.14159265358979323846;
 /*----------------------code start here -----------------------------*/
 
 void themagician(){
-ll n,k,x;
-cin>>n>>k>>x;
-vl v;
-vin(v,n);
-ll sumnor=accumulate(all(v),0*1ll);
-debug(sumnor);
-sort(all(v),greater<ll>());
-ll sum=0;
-loop(x)
+in(n)
+set<ll>s;
+ll mi=0,ma=INF;
+loop(n)
 {
-   sum+=v[i];
+	ll x,y;
+	cin>>x>>y;
+	if(x==1)
+	{
+		mi=max(mi,y);
+	}
+	else if(x==2)
+	{
+		ma=min(y,ma);
+	}
+	else
+	{
+		s.insert(y);
+	}
+	
 }
-debug(sum)
-ll anssum=sumnor-2*sum;
-
-loop(k)
+ll ans=ma-mi+1;;
+debug2(ma,mi);
+debug(s)
+if(mi>ma)
 {
-
-   if(i+x<n)
-  {
-   sum+=v[i+x];
-   sum-=v[i];
-   sumnor-=v[i];
-   anssum=max(anssum,sumnor-2*sum);
-   
-  }
-  else
-  {
-      sum-=v[i];
-      sumnor-=v[i];
-      anssum=max(anssum,sumnor-2*sum);
-  }
-
+	op(0);
+	return;
 }
-op(anssum)
-
-debug2(k,x)
-debug(v)
+// if(mi==ma)
+// {
+// 	if(s.find(mi)==s.end())
+// 	{
+// 		op(1);
+// 		return;
+// 	}
+// 	else
+// 	{
+// 		op(0);
+// 		return;
+// 	}B
+// }
+for(auto &x:s)
+{
+	if(x>=mi&&x<=ma)
+	{
+		ans--;
+	}
+}
+op(ans)
 }
 
 
 
 int main() {
 #ifndef ONLINE_JUDGE
-    freopen("Error.txt", "w", stderr);
+	freopen("Error.txt", "w", stderr);
 #endif
   FastIO();
   
@@ -270,3 +282,4 @@ int main() {
   
 return 0;
 }
+

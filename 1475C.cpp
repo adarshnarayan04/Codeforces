@@ -213,46 +213,49 @@ double acc = 1e-6;
 const ld pi = 3.14159265358979323846;
 
 /*----------------------code start here -----------------------------*/
-
+// also can be done by pnc
+//kC2-->total numebr of 2 pairs can be formed
+//do minus all ileegal pair
+//ans=kC2-illegal
+//illegal can be found by selecting two same value (in both vector)
 void themagician(){
-ll n,k,x;
-cin>>n>>k>>x;
+ll a,b,k;
+cin>>a>>b>>k;
 vl v;
-vin(v,n);
-ll sumnor=accumulate(all(v),0*1ll);
-debug(sumnor);
-sort(all(v),greater<ll>());
-ll sum=0;
-loop(x)
-{
-   sum+=v[i];
-}
-debug(sum)
-ll anssum=sumnor-2*sum;
-
+vin(v,k);
+unordered_map<ll,vector<ll>>m;
+unordered_map<ll,ll>cou;
 loop(k)
 {
-
-   if(i+x<n)
-  {
-   sum+=v[i+x];
-   sum-=v[i];
-   sumnor-=v[i];
-   anssum=max(anssum,sumnor-2*sum);
-   
-  }
-  else
-  {
-      sum-=v[i];
-      sumnor-=v[i];
-      anssum=max(anssum,sumnor-2*sum);
-  }
-
+	in(x)
+	cou[x]++;
+	m[v[i]].pb(x);
 }
-op(anssum)
-
-debug2(k,x)
-debug(v)
+ll n=m.size();
+ll ans=0;
+debug(n)
+for(auto &x:m)
+{
+	n--;//number of element below it
+	k-=x.se.size();
+	if(n==0) break;
+	for(auto &y:x.se)
+	{
+		if(cou[y]>1)
+		{
+			ans+=(k-cou[y]+1);//itself is remoned 2 times ,therefoer added 1
+		}
+		else
+		{
+			ans+=k;
+			
+		}
+		cou[y]--;
+	}
+	
+}
+debug(m)
+op(ans)
 }
 
 
