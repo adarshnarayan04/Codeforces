@@ -216,23 +216,27 @@ for (int i =0 ; i < n; ++i)
 	
 }
 sort(all(v));
+debug(v)
 prefix[0]=v[0].fi;
 loop1(n)
 {
 	prefix[i]=prefix[i-1]+v[i].fi;
 }
+debug(prefix)
 vl ans(n);
-for (int i = 0; i < n; ++i)
+ll j=0;
+for (ll i = 0; i < n; ++i)
 {
-	ans[v[i].se]=i;
-	for (int j = i; j < n-1; ++j)
-	{
-		if(prefix[j]>=v[j+1].fi)
-		{
-			ans[v[i].se]++;
-		}
-		else break;
-	}
+    j=max(i,j);
+    debug(mp(v[j+1],j))
+    while(j<n-1&&prefix[j]>=v[j+1].fi)
+    {
+        
+        j++;
+        
+    }//now for i to j have same ans
+    ans[v[i].se]=j;// backward number area handled by i(and j>=i so i is eventually added )
+
 }
 cout<<ans<<nl;
 }

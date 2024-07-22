@@ -217,7 +217,7 @@ void dijkstra(ll source)
 		{
 			ll child_v=child.fi;
 			ll wt=child.se;
-			if(dist[v]+wt<dist[child_v])
+			if(dist[v]+wt<dist[child_v])//can also use if(dist[v]+wt<dist[child_v]&&!vis[child_v]) but previous one may work for some neagtive weight(as it distance will be changed even after it is visited)
 			{
 				dist[child_v]=dist[v]+wt;
 				st.insert({dist[child_v],child_v});
@@ -229,14 +229,16 @@ void dijkstra(ll source)
 	
 }
 void themagician(){
-ll n,m;
-cin>>n>>m;
+ll n,m,k;
+cin>>n>>m>>k;
 loop(m)
 {
 	ll x,y,wt;
 	cin>>x>>y>>wt;
 	g[x].pb({y,wt});
 }
+vl v;
+vin(v,m);
 }
 
 

@@ -238,31 +238,38 @@ v.pb(n-(ind[k-1]-ind[0]+1));
 sort(all(v),greater<ll>());
 debug(v)
 ll ans=0;
-ll dam=0;
+ll dam=0;//so that not have to iterate loop(evrery time O(n^2))
 loop(v.size())
 {
+    debug(mp(dam,ans))
     if(v[i]-dam>0) ans+=dam;
-    else
+    else//all house have been infected
     {
         ans+=v[i];
+        //we can continue as vector in descending 
+        // if this not staisfy then lower value will obviously will not statisfy
+        
     }
     if(v[i]-dam<2)
     {
-        dam+=2;
+        debug("NO")
+        dam+=2;//means one house only present and that is protected so no damage (so ans not updated)
     }
     else if(v[i]-dam==2)
     {
-        dam+=2;
-        ans++;
+        dam+=2;//as other will have taken 2 damage as no protection
+        ans++;//as one house infected and one protected
     }
     else
     {
-       dam+=4; 
-       ans++;
+        debug("YES")
+       dam+=4; //other will take 4 damage(as will take 2day)
+       ans++;//this block only 1 house will be infected in one day
+       //as in 1st day 1 house infected and 1 side protected and 2nd day other side protected
     }
     
 }
-op(ans+k)
+op(ans+k)//as k houses is intially damaged
 }
 
 

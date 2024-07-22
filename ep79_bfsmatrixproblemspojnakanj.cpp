@@ -199,7 +199,7 @@ const int INF=1e9 +10;
 // const ll INF 0x3f3f3f3f3f3f3f3fLL;
 double acc = 1e-6;
 /*----------------------code start here -----------------------------*/
-bool vis[8][8];
+bool vis[8][8];//can be done without visited array check if lev=INFot lev=-1(means not visited)
 int lev[8][8];
 int getX(string s)
 {
@@ -209,7 +209,8 @@ int getY(string s)
 {
 	return s[1]-'1';//as it start from 1 there(we start from 0 coordinate)
 }
-void reset()//to reset value for each testcase
+void reset()//to reset value for each testcase //can also memset(-1) in lev--->INF in reqd in dijkstrra(there can not use -1--> as we check disparent+wt<dischild but if intially dischild=-1 these will not excuete)
+//but in bfs can use -1
 {
 	loop(8)
 	{

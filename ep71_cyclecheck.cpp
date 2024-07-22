@@ -197,7 +197,7 @@ double acc = 1e-6;
 
 vl g[N];
 bool vis[N];
-bool dfs(ll vertex,ll par)
+bool dfs(ll vertex,ll par)//for undirescted grapg
 {
 	vis[vertex]=true;
 	bool isloopexists=false;

@@ -7,9 +7,9 @@ using namespace std;
 #define popcount(x)     __builtin_popcountll(x)
 
 #define w(t)            ll testcase; cin>>testcase; for (ll tc = 1; tc <= testcase; ++tc)
-#define vin(v,n) for(int i = 0; i < n; ++i){int x;cin>>x;v.pb(x);}
+#define vin(v,n) for(int i = 0; i < n; ++i){ll x;cin>>x;v.pb(x);}
 //vin(vector name,number of times you want to take  input)
-#define vm(n) for(int i = 0; i < n; ++i){int x;cin>>x;v.pb(x);m.pb(x);}
+#define vm(n) for(int i = 0; i < n; ++i){ll x;cin>>x;v.pb(x);m.pb(x);}
 #define in(var) ll var;cin>>var;
 #define op(var) cout<<var<<"\n";
 #define pb push_back
@@ -23,6 +23,22 @@ using namespace std;
 #define YES cout<<"YES\n";
 #define NO cout<<"NO\n";
 #define eps 1e-8;
+
+//for unordered map(to not blowup) use unordered_map<ll,ll,custom_hash>
+struct custom_hash {
+    static uint64_t splitmix64(uint64_t x) {
+        // http://xorshift.di.unimi.it/splitmix64.c
+        x += 0x9e3779b97f4a7c15;
+        x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;
+        x = (x ^ (x >> 27)) * 0x94d049bb133111eb;
+        return x ^ (x >> 31);
+    }
+
+    size_t operator()(uint64_t x) const {
+        static const uint64_t FIXED_RANDOM = chrono::steady_clock::now().time_since_epoch().count();
+        return splitmix64(x + FIXED_RANDOM);
+    }
+};
 
 typedef pair<ll, ll> pll;
 typedef pair<char, ll> pcl;
@@ -206,8 +222,8 @@ bool isPerfectSq(ll n){ll root=sqrtl(n);return root*root==n;}
 
                          
 const unsigned int M = 1e9+7;
-const int N=1e5 +10;
-const int INF=1e9 +10;
+const int N=1e5+10;
+const ll INF=1e18+10;
 // const ll INF 0x3f3f3f3f3f3f3f3fLL;
 double acc = 1e-6;
 const ld pi = 3.14159265358979323846;
@@ -215,44 +231,9 @@ const ld pi = 3.14159265358979323846;
 /*----------------------code start here -----------------------------*/
 
 void themagician(){
-ll n,k,x;
-cin>>n>>k>>x;
-vl v;
-vin(v,n);
-ll sumnor=accumulate(all(v),0*1ll);
-debug(sumnor);
-sort(all(v),greater<ll>());
-ll sum=0;
-loop(x)
-{
-   sum+=v[i];
-}
-debug(sum)
-ll anssum=sumnor-2*sum;
-
-loop(k)
-{
-
-   if(i+x<n)
-  {
-   sum+=v[i+x];
-   sum-=v[i];
-   sumnor-=v[i];
-   anssum=max(anssum,sumnor-2*sum);
-   
-  }
-  else
-  {
-      sum-=v[i];
-      sumnor-=v[i];
-      anssum=max(anssum,sumnor-2*sum);
-  }
-
-}
-op(anssum)
-
-debug2(k,x)
-debug(v)
+ld x=1,y=0.5,z;
+z=y/x;
+op(ceil(z))
 }
 
 
@@ -263,10 +244,10 @@ int main() {
 #endif
   FastIO();
   
-  w(t){
-  //debug(tc)
+
     themagician();
-  }
+  
   
 return 0;
 }
+

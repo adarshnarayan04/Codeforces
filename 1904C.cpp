@@ -201,18 +201,70 @@ double acc = 1e-6;
 
 void themagician(){
 in(n)in(k)
-multiset<ll> st;
+vl s;
 loop(n)
 {
-	ll x;cin>>x;
-	st.insert(x);
+    ll x;
+    cin>>x;
+    s.pb(x);
 }
-for (int i = 0; i < st.size(); ++i)
+if(k>=3)
 {
-	ll x=st.begin()+i;
-	ll y=st.begin()+i+1;
+    cout<<0<<nl;
+    return;
 }
+sort(all(s));
+debug(s)
+if(k==1)
+{
+    ll ans=s[0];
 
+    for(int i=1;i<n;i++)
+    {
+        ans=min(ans,s[i]-s[i-1]);
+   
+        
+    }
+    op(ans)
+
+    return;
+}
+if(k==2)
+{
+    set<ll>v;
+    loop(n)
+    {
+        fl(j,i+1,n)
+        {
+            v.insert(abs(s[j]-s[i]));
+        }
+    }
+ debug(v)
+
+       ll ans=*v.begin();
+       auto it=v.end();
+       it--;
+       loop(n)
+       {
+         auto x=v.lower_bound(s[i]);
+         if(x==v.end())
+         {
+            ans=min(ans,abs(*it-s[i]));
+         } 
+         else
+         {
+            ans=min(ans,abs(*x-s[i]));
+            if(x!=v.begin())
+            {
+                x--;
+                ans=min(ans,abs(*x-s[i]));
+            }
+            
+            
+         }
+       }
+       op(ans)
+}
 }
 
 
