@@ -10,6 +10,8 @@
         "ios": "cpp",
         "xiosbase": "cpp",
         "vector": "cpp",
-        "type_traits": "cpp"
+        "type_traits": "cpp",
+        "limits": "cpp",
+        "utility": "cpp"
     }
 }
