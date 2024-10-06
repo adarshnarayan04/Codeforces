@@ -1,0 +1,1 @@
+{"name":"Local: hello","url":"c:\\Users\\adars\\Documents\\GitHub\\Codeforces\\hello.cpp","tests":[{"id":1725702011392,"input":"3\nazbde\nabcher\nacegk\n47\n\n","output":""},{"id":1727341944664,"input":"1","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\adars\\Documents\\GitHub\\Codeforces\\hello.cpp","group":"local","local":true}

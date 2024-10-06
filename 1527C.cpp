@@ -245,18 +245,38 @@ ll ans=0;
 for(auto &x:m)
 {
     vl q=x.se;
-    ll pos=q[0]+1;//1 based indexing
-    loop1(q.size())
+    ll pos=q[0]+1;//1 based indexing(so that help in counting)
+    loop1(q.size())//as pos is already taken we want next number so strt from 1
     {
-        ans+=((pos)*(n-q[i]));//pos present no previous of it and n-q[i] after it
-        pos+=q[i]+1;//so that it works for all next cases
+        //we are counting in how any subsequences this pair(pos and q[i]) can be present
+        //as if they are present ia any subsequence then increaser the count 
+        //so ans calculte the number of sequence in which this pair can be present
+        
+        //we move back form previous and take element that can be present in subsequence and move forward from q[i] to take element that can be present in subsequence
+        //so no elemnt in back(is 1->pos=pos) and in front is (q[i] to n =n-q[i])
+
+        //so number of sequenc it can be present is (pos)*(n-q[i])
+
+
+        ans+=((pos)*(n-q[i]));//pos represent nunmber previous of it and n-q[i] after it
+        pos+=q[i]+1;//so that it calclautes for previous cases also  (1+2)*(n-3)  calcaultes for 1 ans 2 index(1 based ) at single time
         // ex 1211 m[1]  0 2 3
         //so we first check 0 2 all sussequneces
         // then 2 3 all sequences but 0 3 is left
+
         //therefore we use pos+= not pos=
-        //now if we check 2 3 (all previos are also counted here 3)--> see as all subsequences upto 3 inde
-        // if 0 3 1*(n-3) and 2 3 2*(n-3) so upto three of all (1+2)*(n-3)
-            }
+
+        // pos+= act as prefix sum(wehn we calculate of (2,3) pair we also calculate for (0,3) pair) -->o based
+        // initally pos=0+1(1 based ) we calcuare (0,2) 
+        //now for (2,3) pos+=(2+1) (1 based to indxing) now pos=4=(3+1)
+        // 4*(n-3)
+        //(3+1)*(n-3)
+        // 1*(n-3)+3*(n-3) 
+        //so now it calcauted for (0,3) pair also 
+
+        //thus prefix sum reduce the time complexity
+
+        }
 }
 op(ans)
 }
