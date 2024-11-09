@@ -35,39 +35,53 @@ const long double pi = 3.14159265358979323846;
 /*----------------------code start here -----------------------------*/
 
 void themagician(){
-  int n;
-  cin>>n;
-  vector<int> v(n+1);
-  for (int i = 1; i <=n; i++)
-  {
-    cin>>v[i];
-  }
-  
-  vector<int> dp(n+1,INT_MAX);//dp[i] --> min of balls we not remove (thinking inverse of question)
-  //asked max no of balls removed
-  dp[0]=0;
-  dp[1]=1;//as single element --> as have to remove
-  unordered_map<int,int> m;//cointains min of all dp states of same number
-  m[v[1]]=0;//dp[0] ---> so have to do shifting
+    int n;
+    cin>>n;
 
-  //in take case --> we remove upto the previous number (ex i  so and dp[i-1] as after that element has been removed)
-  //that why in map we take dp[i-1]
+    vector<int> v(n);
+    for(auto &x:v) cin>>x;
 
-  for (int i = 2; i <= n; i++)
-  {
-    if(m.find(v[i])!=m.end()){
-      dp[i]=min(dp[i-1]+1,m[v[i]]);//not take and take     
-      m[v[i]]=min(m[v[i]],dp[i-1]);
-      //as when v[i] again come --> in take case --> we take min of all cases when we has come
+    auto f=[&](int k)
+    {
+        bool used=false;
+        vector<bool> vis(n);
+        for(int i=1;i<n;i++)
+        {
+            if(v[i]-v[i-1]>k)
+            {
+                if(used) return false;
+                else used=true;
+                vis[i-1]=1;
+            }
+            else{
+                vis[i]=1;
+                vis[i-1]=1;
+                i++;
+            }
+        }
+        if(!vis[n-1])
+        {
+            return !used;
+        }
+        
+        return true;
+
+    };
+    int lo=1,hi=1e18;
+    int mid;
+    int ans=-1;
+    while(hi>=lo)
+    {
+        mid=(hi+lo)>>1;
+        if(f(mid))
+        {
+            ans=mid;
+            hi=mid-1;
+
+        }
+        else lo=mid+1;
     }
-    else{//not take
-      dp[i]=dp[i-1]+1;
-      m[v[i]]=dp[i-1];
-    }
-  }
-  debug(dp)
-  op(n-dp[n])
-  
+    op(ans)
 
 }
 

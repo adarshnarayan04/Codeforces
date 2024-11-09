@@ -35,40 +35,29 @@ const long double pi = 3.14159265358979323846;
 /*----------------------code start here -----------------------------*/
 
 void themagician(){
-  int n;
-  cin>>n;
-  vector<int> v(n+1);
-  for (int i = 1; i <=n; i++)
-  {
-    cin>>v[i];
-  }
-  
-  vector<int> dp(n+1,INT_MAX);//dp[i] --> min of balls we not remove (thinking inverse of question)
-  //asked max no of balls removed
-  dp[0]=0;
-  dp[1]=1;//as single element --> as have to remove
-  unordered_map<int,int> m;//cointains min of all dp states of same number
-  m[v[1]]=0;//dp[0] ---> so have to do shifting
+    int n;
+    cin>>n;
+    vector<int> v(n+1);//1 based
+    for(int i=1;i<=n;i++) cin>>v[i];
 
-  //in take case --> we remove upto the previous number (ex i  so and dp[i-1] as after that element has been removed)
-  //that why in map we take dp[i-1]
-
-  for (int i = 2; i <= n; i++)
-  {
-    if(m.find(v[i])!=m.end()){
-      dp[i]=min(dp[i-1]+1,m[v[i]]);//not take and take     
-      m[v[i]]=min(m[v[i]],dp[i-1]);
-      //as when v[i] again come --> in take case --> we take min of all cases when we has come
+    int l=2,r=n-1;//as we wnat to check next element (a r=n-1 not n) because of r=n-1 --> l=2 ( but we leave l=0 check --> we check back for l)
+    while (l<=r)
+    {
+        if(v[l]==v[r]){
+            l++;
+            r--;
+            continue;
+        }
+        else if(v[l]==v[l-1]||v[r]==v[r+1]){
+            swap(v[l],v[r]);  
+        }
+        l++;
+        r--;
     }
-    else{//not take
-      dp[i]=dp[i-1]+1;
-      m[v[i]]=dp[i-1];
-    }
-  }
-  debug(dp)
-  op(n-dp[n])
-  
-
+    int ans=0;
+    for(int i=0;i<n;i++) ans+=(v[i]==v[i+1]);
+    op(ans)
+    
 }
 
 signed main() {
@@ -77,10 +66,14 @@ signed main() {
 #endif
   FastIO();
   
-  w(t){
+  
   //debug(tc)
+  w(t){
     themagician();
+
   }
+    
+  
   
 return 0;
 }

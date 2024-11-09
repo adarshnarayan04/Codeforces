@@ -1,0 +1,1 @@
+{"name":"Local: crio4","url":"c:\\Users\\adars\\Documents\\GitHub\\Codeforces\\crio4.cpp","tests":[{"id":1730972617669,"input":"2\n3 4\n.-..\n.-..\n+...\n3 2 5\n3 3\n-..\n..-\n.+.\n2 2 4","output":"5\n2"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\adars\\Documents\\GitHub\\Codeforces\\crio4.cpp","group":"local","local":true}

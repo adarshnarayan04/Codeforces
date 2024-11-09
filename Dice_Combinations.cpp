@@ -35,40 +35,46 @@ const long double pi = 3.14159265358979323846;
 /*----------------------code start here -----------------------------*/
 
 void themagician(){
-  int n;
-  cin>>n;
-  vector<int> v(n+1);
-  for (int i = 1; i <=n; i++)
-  {
-    cin>>v[i];
-  }
-  
-  vector<int> dp(n+1,INT_MAX);//dp[i] --> min of balls we not remove (thinking inverse of question)
-  //asked max no of balls removed
-  dp[0]=0;
-  dp[1]=1;//as single element --> as have to remove
-  unordered_map<int,int> m;//cointains min of all dp states of same number
-  m[v[1]]=0;//dp[0] ---> so have to do shifting
+    int n;
+    cin>>n;
+    //vector<int> dp(n+1,-1);
 
-  //in take case --> we remove upto the previous number (ex i  so and dp[i-1] as after that element has been removed)
-  //that why in map we take dp[i-1]
+    // auto f=[&](auto f,int n)-> int{
+    //     if(n==0) return 1;
+    //     if(n<0) return 0;
 
-  for (int i = 2; i <= n; i++)
-  {
-    if(m.find(v[i])!=m.end()){
-      dp[i]=min(dp[i-1]+1,m[v[i]]);//not take and take     
-      m[v[i]]=min(m[v[i]],dp[i-1]);
-      //as when v[i] again come --> in take case --> we take min of all cases when we has come
+    //     if(dp[n]!=-1) return dp[n];
+    //     int ans=0;
+    //     for (int i = 1; i <= 6; i++)
+    //     {
+    //         ans+=f(f,n-i);
+    //         ans%=M;
+    //     }
+    //     //can use the index concpet --> take, not take (as done in coin change --> it is same question)
+    //     //during take do not increase the index as we can take agaain
+    //     //but it take more space as we have to store the index also in dp
+    //     return dp[n]=ans;
+
+    // };
+
+    vector<int> dp(n+1,0);
+    dp[0]=1;
+
+    for(int left=1;left<=n;left++)
+    {
+        if(dp[left]!=0) continue;
+        for(int dice=1;dice<=6;dice++)
+        {
+            if(left-dice>=0)
+            {
+                dp[left]+=dp[left-dice];
+                dp[left]%=M;
+            }
+        }
+
     }
-    else{//not take
-      dp[i]=dp[i-1]+1;
-      m[v[i]]=dp[i-1];
-    }
-  }
-  debug(dp)
-  op(n-dp[n])
-  
 
+    cout<<dp[n]<<nl;
 }
 
 signed main() {
@@ -77,10 +83,10 @@ signed main() {
 #endif
   FastIO();
   
-  w(t){
+  
   //debug(tc)
     themagician();
-  }
+  
   
 return 0;
 }
