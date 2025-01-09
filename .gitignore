@@ -12,3 +12,5 @@ inputf.in
 hi.exe
 inputf.in
 outputf.in
+*.bin
+.*
