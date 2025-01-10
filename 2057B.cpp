@@ -52,6 +52,16 @@ void themagician(){
     }
     sort(freq.begin(),freq.end());
     debug(freq)
+    for(int i=0;i<freq.size();i++)
+    {
+        if(k-freq[i]<0) break;
+        k-=freq[i];
+        ans--;
+
+
+    }
+    if(ans==0) ans=1;
+    op(ans)
 
 }
 

@@ -35,24 +35,11 @@ const long double pi = 3.14159265358979323846;
 /*----------------------code start here -----------------------------*/
 
 void themagician(){
-    int n,k;
-    cin>>n>>k;
-    map<int,int> m;
-    for(int i=0;i<n;i++)
-    {
-        int x;cin>>x;
-        m[x]++;
-    }
-    int ans=m.size();
-    vector<int> freq;
-    for(auto &[x,y]:m)
-    {
-        freq.push_back(y);
-
-    }
-    sort(freq.begin(),freq.end());
-    debug(freq)
-
+    int n,m;
+    cin>>n>>m;
+    int ans=max(n,m);
+    ans++;
+    op(ans)
 }
 
 
