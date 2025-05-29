@@ -35,22 +35,66 @@ const long double pi = 3.14159265358979323846;
 /*----------------------code start here -----------------------------*/
 
 void themagician(){
-    int n;cin>>n;
+//Always think to solve problem by Mathematically (also prove it mathematically) first , then other approach
+    int n;
+    cin>>n;
+
     vector<int> v(n);
+    
     for(auto &x:v) cin>>x;
 
-    vector<int> div;
-    for(int i=1;i*i<=n;i++){
-        if(n%i==0) {
-            div.push_back(i);
-            if(n/i!=i) div.push_back(n/i);
+    int ma=0,mi=0;
+    bool flag=false;
+
+    for(int i=0;i<n;i++){
+        int l,r;
+        cin>>l>>r;
+
+        if(flag) continue;
+
+        if(v[i]==1){
+            ma++;
+            mi++;
         }
+        else if (v[i]==-1){
+            ma++;
+        }
+        debug(mi,ma)
+        int temp=ma;
+
+        if( r>=mi && l<=ma )
+        {
+            ma=min(ma,r);
+            mi=max(mi,l);
+        }
+        else{
+            //debug(v)
+            cout<<-1<<nl;
+            flag=true;
+        }
+        // if(v[i]==-1){
+        //     if(temp==ma){
+        //         v[i]=1;
+        //     }
+        //     else{
+        //         v[i]=0;
+        //     }
+            
+
+        // }
+        //debug("int",mi,ma)
+
+
+    }
+    if(flag) return;
+    for (int i = 0; i < n; i++)
+    {
+        cout<<v[i]<<" ";
         
     }
-    for(auto &x:div)
-    {
-        int 
-    }
+    nline;
+    
+    
 }
 
 

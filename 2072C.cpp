@@ -35,22 +35,49 @@ const long double pi = 3.14159265358979323846;
 /*----------------------code start here -----------------------------*/
 
 void themagician(){
-    int n;cin>>n;
-    vector<int> v(n);
-    for(auto &x:v) cin>>x;
+    int n,x;cin>>n>>x;
+    vector<int> v;
+    // v.push_back(x);
+    int a=0;
+    //debug(~x)
 
-    vector<int> div;
-    for(int i=1;i*i<=n;i++){
-        if(n%i==0) {
-            div.push_back(i);
-            if(n/i!=i) div.push_back(n/i);
+    n--;//inserting n-1 , as inserting 
+    bool flag=false;
+    for(int i=0;i<n;i++)
+    {
+        if(flag) {
+            //debug(i,"1")
+            v.push_back(x);
+            continue;
         }
+        if((~x & i)==0){
+            //debug(i)
+            v.push_back(i);
+            a|=i;
+        }
+        else{
+            flag=true;
+            v.push_back(x);
+        }
+         
         
     }
-    for(auto &x:div)
-    {
-        int 
+    if(!flag){
+        int check=a|n;
+        if(check==x){
+            v.push_back(n);
+        }
+        else{
+            v.push_back(x);
+        }
     }
+    else{
+        v.push_back(x);
+    }
+    
+    for(auto &x:v) cout<<x<<" ";
+    nline;
+ 
 }
 
 

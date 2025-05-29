@@ -35,22 +35,56 @@ const long double pi = 3.14159265358979323846;
 /*----------------------code start here -----------------------------*/
 
 void themagician(){
-    int n;cin>>n;
+    in(n)
     vector<int> v(n);
-    for(auto &x:v) cin>>x;
+    for(auto &x: v) cin>>x;
+    sort(v.begin(),v.end());
+    int l=0,r=n-1;
+    int x=0;
+    int cost=0;
+    debug(v)
+    while(l<r){
+      x+=v[l];
+      if(x==v[r]){
+        cost++;
+        cost+=v[l];
+        v[r]=0;
+        r--;
+        x=0;
+        v[l]=0;
+      }
+      else if(x>v[r]){
+        int ex=x-v[r];
+        v[r]=0;
+        r--;
+        x=0;
+        cost++;
+        cost+=(v[l]-ex);
+        v[l]=ex;
+      }
+      else if(x<v[r]) {
+        cost+=v[l];
+        v[l]=0;
+      }
+      if(v[l]==0) l++;
+    }
+    debug(v)
+    debug(x,cost)
+    debug(l,r)
+    if(l==r && v[l]!=0){
+      int dif=v[l]-x;
+      // if(dif==0) cost++;
+      // else if(v[l]==1) cost++;
+      // else{
+      debug(dif)
+        int op=dif/2;
+        cost+=(op+1);//1 to apply x;
+        if(v[l]>1 && dif&1)  cost++;
+      //}
+    }
 
-    vector<int> div;
-    for(int i=1;i*i<=n;i++){
-        if(n%i==0) {
-            div.push_back(i);
-            if(n/i!=i) div.push_back(n/i);
-        }
-        
-    }
-    for(auto &x:div)
-    {
-        int 
-    }
+    
+    cout<<cost<<nl;
 }
 
 

@@ -35,21 +35,31 @@ const long double pi = 3.14159265358979323846;
 /*----------------------code start here -----------------------------*/
 
 void themagician(){
-    int n;cin>>n;
+//Always think to solve problem by Mathematically (also prove it mathematically) first , then other approach
+    int n,m;
+    cin>>n>>m;
     vector<int> v(n);
-    for(auto &x:v) cin>>x;
 
-    vector<int> div;
-    for(int i=1;i*i<=n;i++){
-        if(n%i==0) {
-            div.push_back(i);
-            if(n/i!=i) div.push_back(n/i);
-        }
-        
+    for(auto &x:v) cin>>x;
+    int ans=1;
+
+    if(n>m){ // as , take modulo m with all N numbers ( since n>m) , so some number will have to same remainder ( as n>m , so only 0 - m-1 remainder possible), think like hashing with remainder value
+      //now since two number have same remainder with mod M ( 5 and 7 with 2) , so if we subtract that two number and take mod --> we will get 0 ( as both have same remainder ,so if we subtract that remainder will be removed)
+      // ex: ax+b , cx+b with mod x (both have b --> remainder) ---> subtract --> (a-c)x --> can be it become muliple of x --> so remaider will be 0
+      // (5-7)=2 , 2 % 2=0 
+      cout<<0<<nl;
+      return;
     }
-    for(auto &x:div)
-    {
-        int 
+    
+    else{
+      for(int i=0;i<n;i++){
+        for(int j=i+1;j<n;j++){
+          ans*=abs((v[i]-v[j]));
+          ans%=m;
+
+        }
+      }
+      cout<<ans<<nl;
     }
 }
 
@@ -61,10 +71,10 @@ signed main() {
 #endif
   FastIO();
   
-  w(t){
+
   //debug(tc)
     themagician();
-  }
+  
   
 return 0;
 }

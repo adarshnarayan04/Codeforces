@@ -1,5 +1,41 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#ifndef ONLINE_JUDGE
+#include "debugging.h"
+#else
+# define debug(x...)
+#endif
+
+#define int long long
+#define ll long long
+
+#define w(t)   int testcase; cin>>testcase; for (int tc = 1; tc <= testcase; ++tc)
+#define vin(v,n) for(int i = 0; i < n; ++i){int x;cin>>x;v.push_back(x);}
+//vin(vector name,number of times you want to take  input)
+#define in(var) int var;cin>>var;
+#define op(var) cout<<var<<"\n";
+#define FastIO() ios_base::sync_with_stdio(false);cin.tie(NULL);
+#define YES cout<<"YES\n";
+#define NO cout<<"NO\n";
+#define eps 1e-8;
+
+#define nline cout <<"\n"
+#define nl "\n"
+
+
+int gcd(int a, int b) { return b == 0 ? a : gcd(b, a % b); }
+                         
+const unsigned int M = 1e9+7;
+const int N=1e5+10;
+const int INF=1e18 +10;
+double acc = 1e-6;
+const long double pi = 3.14159265358979323846;
+
+/*----------------------code start here -----------------------------*/
 /* Segment Tree Lazy Propogation Generic Code */
 /*
+decalre: SegTree<Node,Update> seg(n);
 - merge(x, identityElement) = x
 - identityTransformation.combine(x) = x --> for combine operation of update , if update value is identitfy transformation then it give back other update value
 ex: update.combine(otherupdate)=otherupdate if update.v=identitytrasformtion  , in addition case it is 0 
@@ -13,8 +49,11 @@ public:
         v = val; // 2. Node constructor will change depending on, what we need to initialize
     }
     
-    void merge(const Node& l, const Node& r){ // v is each nodes data, while l & r are children
-        v = l.v + r.v; //3. Merge function (merge logic can change)
+    void merge1(const Node& l, const Node& r){ // v is each nodes data, while l & r are children
+        v = l.v | r.v; //3. Merge function (merge logic can change)
+    }
+    void merge2(const Node& l, const Node& r){ // v is each nodes data, while l & r are children
+        v = l.v ^ r.v; //3. Merge function (merge logic can change)
     }
 };
 
@@ -32,7 +71,7 @@ public:
     }
     
     void apply(Node& node, const int& tl, const int& tr) const{
-        node.v += (tr - tl + 1) * v; // 7. applying the update received on the node
+        node.v = v; // 7. applying the update received on the node
     }	
 };
 
@@ -86,7 +125,13 @@ public:
         int tm = (tl + tr)/2;
         build(a, 2*v, tl, tm);
         build(a, 2*v+1, tm+1, tr);
-        t[v].merge(t[2*v], t[2*v+1]);
+        int dif=tr-tl+1;
+        debug(tr,tl)
+        int power=log2(dif);
+        if(power&1)
+        t[v].merge1(t[2*v], t[2*v+1]);
+        else
+        t[v].merge2(t[2*v], t[2*v+1]);
     }
     
     // Query input question is = [l, r] included -- query(1, 0, len-1, l, r)
@@ -100,7 +145,8 @@ public:
         node leftAns = query(2*v, tl, tm, l, r);
         node rightAns = query(2*v+1, tm+1, tr, l, r);
         node ans;
-        ans.merge(leftAns, rightAns);
+        //no problem as we always ask for full range--> so full overlap code will run
+        ans.merge1(leftAns, rightAns);
         return ans;
     }
     
@@ -118,7 +164,13 @@ public:
         int tm = (tl + tr)/2;
         rangeUpdate(2*v, tl, tm, l, r, upd);
         rangeUpdate(2*v+1, tm+1, tr, l, r, upd);
-        t[v].merge(t[2*v], t[2*v+1]);
+        int dif=tr-tl+1;
+        
+        int power=log2(dif);
+        if(power&1)
+        t[v].merge1(t[2*v], t[2*v+1]);
+        else
+        t[v].merge2(t[2*v], t[2*v+1]);
     }
     
     //over-ridden functions
@@ -135,3 +187,42 @@ public:
         rangeUpdate(1, 0, len-1, l, r, upd);
     }
 };
+void themagician(){
+    int n,q;
+    cin>>n>>q;
+    n=1<<n;
+    vector<int> v(n);
+    for(auto &x:v) cin>>x;
+    debug(v)
+    SegTree<Node,Update> seg(n);
+    seg.build(v);
+
+    while(q--)
+    {
+        int i,val;
+        cin>>i>>val;
+        i--;
+        seg.rangeUpdate(i,i,Update(val));
+        cout<<seg.query(0,n-1).v<<endl;
+    }
+
+
+    
+}
+
+
+
+signed main() {
+#ifndef ONLINE_JUDGE
+    freopen("Error.txt", "w", stderr);
+#endif
+  FastIO();
+  
+
+  //debug(tc)
+    themagician();
+  
+  
+return 0;
+}
+

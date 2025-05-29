@@ -35,22 +35,24 @@ const long double pi = 3.14159265358979323846;
 /*----------------------code start here -----------------------------*/
 
 void themagician(){
-    int n;cin>>n;
-    vector<int> v(n);
-    for(auto &x:v) cin>>x;
+//Always think to solve problem by Mathematically (also prove it mathematically) first , then other approach
+    string s;
+    cin>>s;
 
-    vector<int> div;
-    for(int i=1;i*i<=n;i++){
-        if(n%i==0) {
-            div.push_back(i);
-            if(n/i!=i) div.push_back(n/i);
-        }
-        
+    int num=stoi(s);
+
+    double root= sqrt(num);
+
+    int x=root;
+    
+
+    if(x*x==num){
+
+        cout<<0<<" "<<x<<nl;
+
     }
-    for(auto &x:div)
-    {
-        int 
-    }
+    else
+    cout<<-1<<nl;
 }
 
 

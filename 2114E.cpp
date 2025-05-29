@@ -35,22 +35,57 @@ const long double pi = 3.14159265358979323846;
 /*----------------------code start here -----------------------------*/
 
 void themagician(){
-    int n;cin>>n;
-    vector<int> v(n);
-    for(auto &x:v) cin>>x;
+//Always think to solve problem by Mathematically (also prove it mathematically) first , then other approach
+    int n;
+    cin>>n;
 
-    vector<int> div;
-    for(int i=1;i*i<=n;i++){
-        if(n%i==0) {
-            div.push_back(i);
-            if(n/i!=i) div.push_back(n/i);
+    vector<int> v(n+1);
+
+    for(int i=1;i<=n;i++){
+        cin>>v[i];
+    }
+
+    vector<vector<int>> g(n+1);
+
+    vector<int> parent(n+1);
+    parent[1]=1;
+
+    for(int i=0;i<n-1;i++){
+        int a,b;
+        cin>>a>>b;
+
+        g[a].push_back(b);
+        g[b].push_back(a);
+
+    }
+
+    vector<bool> vis(n+1);
+    int d=0;
+
+    auto dfs=[&](auto dfs, int node,int par=-1)->void{
+        vis[node]=1;
+
+        for(auto c:g[node]){
+            if(c==par || vis[c] ) continue;
+            d++;
+            parent[c]=node;
+            if(d&1)
+            v[c]-=v[node];
+            else{
+                v[c]-=v[node];
+
+            }
+            dfs(dfs,c,node);
         }
         
+    };
+
+    dfs(dfs,1);
+
+    for(int i=1;i<=n;i++){
+        cout<<v[i]<<" ";
     }
-    for(auto &x:div)
-    {
-        int 
-    }
+    nline;
 }
 
 

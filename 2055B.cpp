@@ -36,28 +36,41 @@ const long double pi = 3.14159265358979323846;
 
 void themagician(){
     int n;cin>>n;
-    vector<int> v(n);
-    for(auto &x:v) cin>>x;
+    vector<int> a(n),b(n);
 
-    vector<int> div;
-    for(int i=1;i*i<=n;i++){
-        if(n%i==0) {
-            div.push_back(i);
-            if(n/i!=i) div.push_back(n/i);
-        }
-        
-    }
-    for(auto &x:div)
+    for(auto &x:a) cin>>x;
+    for(auto &x:b) cin>>x;
+    int req=-1;
+
+    int mini=INT_MAX;
+    for(int i=0;i<n;i++)
     {
-        int 
+        if(a[i]>=b[i]) mini=min(mini,a[i]-b[i]);
+        else{
+            if(req!=-1)
+            {
+                NO;
+                return;
+            }
+            else{
+                req=b[i]-a[i];
+            }
+        }
     }
-}
+    debug(req,mini)
+    if(mini==INT_MAX) {
+        NO;
+        return;
+    }
+    if(req<=mini) cout<<"YES"<<nl;
+    else cout<<"NO"<<nl;
+ }
 
 
 
 signed main() {
 #ifndef ONLINE_JUDGE
-    freopen("Error.txt", "w", stderr);
+    freopen("Error.txt", "w", stderr); 
 #endif
   FastIO();
   

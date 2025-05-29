@@ -34,23 +34,66 @@ const long double pi = 3.14159265358979323846;
 
 /*----------------------code start here -----------------------------*/
 
-void themagician(){
-    int n;cin>>n;
-    vector<int> v(n);
-    for(auto &x:v) cin>>x;
+int binpow( int num , int pow){
+    int val=1;
+    int a=1;
 
-    vector<int> div;
-    for(int i=1;i*i<=n;i++){
-        if(n%i==0) {
-            div.push_back(i);
-            if(n/i!=i) div.push_back(n/i);
+    while(pow){
+        a*=a;
+        a%=M;
+
+        if(pow&1){
+            val+=a;
+            val%=M;
+        }
+        pow>>=1;
+
+    }
+    return val;
+}
+void themagician(){
+//Always think to solve problem by Mathematically (also prove it mathematically) first , then other approach
+    string s;
+    cin>>s;
+
+    int n=s.size();
+
+    vector<int> v;
+    int c=0;
+
+    for(int i=0;i<n;i++){
+        if(s[i]=='a') {
+            c++;
+        }
+
+        if(s[i]=='b'){
+            if(c)
+            v.push_back(c);
+            c=0;
         }
         
     }
-    for(auto &x:div)
-    {
-        int 
+    if(c){
+        v.push_back(c);
     }
+
+    int si=v.size();
+    if(si==0){
+        cout<<0;
+        return;
+    }
+    int ans=1;
+
+  
+
+    for(int i=0;i<si; i++){
+        ans*=(v[i]+1);
+        ans%=M;
+    }
+    ans-=1;
+    ans%=M;
+    cout<<ans;
+  
 }
 
 
@@ -61,10 +104,10 @@ signed main() {
 #endif
   FastIO();
   
-  w(t){
+
   //debug(tc)
     themagician();
-  }
+  
   
 return 0;
 }
