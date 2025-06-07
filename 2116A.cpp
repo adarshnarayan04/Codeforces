@@ -36,56 +36,18 @@ const long double pi = 3.14159265358979323846;
 
 void themagician(){
 //Always think to solve problem by Mathematically (also prove it mathematically) first , then other approach
-    int n;
-    cin>>n;
+    int a,b,c,d;
+    cin>>a>>b>>c>>d;
 
-    vector<int> v(n+1);
-
-    for(int i=1;i<=n;i++){
-        cin>>v[i];
-    }
-
-    vector<vector<int>> g(n+1);
-
-    // vector<int> parent(n+1);
-    // parent[1]=1;
-
-    for(int i=0;i<n-1;i++){
-        int a,b;
-        cin>>a>>b;
-
-        g[a].push_back(b);
-        g[b].push_back(a);
-
-    }
-
-    vector<bool> vis(n+1);
-    vector<int> maxi(n+1,0),mini(n+1,INT_MAX);
-
-    auto dfs=[&](auto dfs, int node,int par=-1)->void{
-        vis[node]=1;
-
-        for(auto c:g[node]){
-            if(c==par || vis[c] ) continue;
-            // node is parent for c
-
-            maxi[c]=max(v[c],v[c] - mini[node]);
-            mini[c]=min(v[c],v[c]-maxi[node]);
-            
-            
-            dfs(dfs,c,node);
-        }
+    int x=min(a,c);
+    int y=min(b,d);
+    if(x>=y){
+        cout<<"Gellyfish"<<nl;
         
-    };
-    maxi[1]=v[1];
-    mini[1]=v[1];
-
-    dfs(dfs,1);
-
-    for(int i=1;i<=n;i++){
-        cout<<maxi[i]<<" ";
     }
-    nline;
+    else {
+        cout<<"Flower"<<nl;
+    }
 }
 
 
