@@ -47,59 +47,47 @@ void themagician(){
         g[x].push_back(y);
         g[y].push_back(x);
     }
+    //approach: intially thinking all the city are industry , so we count how much happiness we get 
+    //if we convert that city to toursim
+    //we do -dep[i], as if a city is tourism --> then always is parent should be tourism city ( by greedy ) as parent is always preferred ( can see editorial)
+    // so if we calculate for parent , then the child which is actually toursim , will get added as contribuation ( as + siz[i])
+    //to remove that , the child city will be added to all its parent city ( so we -dep[i])
     vector<bool> vis(n+1);
-    vector<pair<int,int>> ans;
-    int d=0;
+    vector<int> siz(n+1),dep(n+1);
+    int d=1;
 
-    auto dfs=[&](auto dfs, int node,int par=-1)->void{
+    auto dfs=[&](auto dfs, int node,int par=-1)->int{
         vis[node]=1;
-        bool isLeaf=1;
+        siz[node]=1;
+        dep[node]=d;
 
         for(auto c:g[node]){
             if(c==par || vis[c] ) continue;
-            isLeaf=0;
             d++;
-            dfs(dfs,c,node);
+            siz[node]+=dfs(dfs,c,node);
             d--;
         }
-        if(isLeaf) ans.push_back({node,d});
+        return siz[node];
     };
+    
 
     dfs(dfs,1);
-    debug(ans)
+    vector<int> ans(n);
+    // debug(siz)
+    // debug(dep)
 
-    priority_queue<pair<int,int>> pq;
-
-    for(int i=0;i<ans.size(); i++){
-        pq.push({ans[i].second,0});
-    }
-    priority_queue<pair<int,int>> temp=pq;
-    int c=k;
-    while(k--){
-        auto ele=pq.top();
-        pq.pop();
-        ele.first--;
-        ele.second++;
-        pq.push(ele);
+    for(int i=1;i<=n;i++){
+        ans[i-1]=siz[i]-dep[i];
     }
 
-    while(!temp.empty()){
-        debug(temp.top());
-        temp.pop();
-    }
-    int val=0;
+    sort(ans.begin(),ans.end(),greater<int>());
 
-    while(!pq.empty()){
-        auto ele=pq.top();
-        debug(ele)
-        pq.pop();
+    int val=accumulate(ans.begin(),ans.begin()+n-k,0LL);
 
-        if(ele.second){
-            int x=ele.first+1;
-            val+=(x * ele.second);
-        }
-    }
-    cout<<val;
+    cout<<val<<nl;
+
+
+    
 }
 
 
